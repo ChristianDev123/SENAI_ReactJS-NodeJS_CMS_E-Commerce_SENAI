@@ -15,6 +15,7 @@ export default function LeftMain({changeTheme,currentTheme }){
                     }}
                 />
                 <CarrouselWrapper>
+                    asdasdasda
                 </CarrouselWrapper>
             </Wrapper>
         </>

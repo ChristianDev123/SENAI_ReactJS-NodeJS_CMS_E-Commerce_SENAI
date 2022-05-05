@@ -6,9 +6,11 @@ export const Global = createGlobalStyle`
         padding: 0;
         box-sizing: border-box;
     }
-    html,body{
+    html,body,#root{
         background-color:${(props)=>props.theme.colors.background};
         transition: 1s;
+        height:100vh;
+        width:100vw;
     }
     :root{
         --primary-color:#D71709;

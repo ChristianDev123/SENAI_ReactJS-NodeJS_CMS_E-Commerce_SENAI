@@ -1,21 +1,19 @@
-import React from 'react'
-import { Container, Row, Col, } from 'reactstrap';
+import { Row, Col, } from 'reactstrap';
 import LeftMain from '../carrousel/Carrousel';
 import MainForm from '../form/Content';
 import { WrapperSection } from './StylesLogin';
+
 export default function Login({changeTheme,currentTheme }) {
   return (
-    <Container fluid>
       <WrapperSection>
-        <Row xs="2">
-          <Col>
+        <Row xs={1} lg={2} className='h-100'>
+          <Col className="d-none d-md-inline h-100">
               <LeftMain changeTheme={changeTheme} currentTheme={currentTheme}/>
           </Col>
-          <Col>
+          <Col className='h-100'>
               <MainForm />
           </Col>
         </Row>
       </WrapperSection>
-    </Container>
   )
 }

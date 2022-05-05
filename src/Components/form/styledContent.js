@@ -5,32 +5,41 @@ export const ContainerForm = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top:70px;
+    padding:20px;
+    height:100%;
 `;
 
 export const Title = styled.h1`
-    font-size:2em;
-    font-weight: 400;
+    font-size:20px;
+    font-weight: 600;
     letter-spacing: 0em;
     text-align:left;
     color: ${(props)=>props.theme.colors.specialText};
     font-style: italic;
     padding-bottom: 50px;
+    @media screen and (max-width:350px) {
+        font-size:16px;
+    }
+    @media screen and (min-width:768px) {
+        font-size:28px;
+    }
 `;
 
 export const Form = styled.form`
-    margin:20px;
 `;
 
 export const Label = styled.label`
     font-family: Open Sans;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 27px;
-    letter-spacing: 0em;
+    font-size: 16px;
     text-align: left;
-    padding: 10px;
+    padding: 10px 10px 0 5px;
     color:${(props)=>props.theme.colors.specialText};
+    @media screen and (max-width:350px) {
+        font-size:14px;
+    }
+    @media screen and (min-width:370px) {
+        font-size: 22px;;
+    }
 `;
 
 export const Input = styled.input`
@@ -87,5 +96,8 @@ export const SubText = styled.a`
     :hover{
         text-decoration: none;
         cursor: pointer;
+    }
+    @media screen and (max-width:350px) {
+        font-size:11px;
     }
 `;

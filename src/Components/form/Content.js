@@ -1,7 +1,8 @@
 import {ContainerForm, Title, Form, Input, Label, SubText, Button} from './styledContent'
+
 export default function MainForm(){
- return(
-     <>
+    return(
+        <>
             <ContainerForm>
                     <Title>Login - ControlDatabaseSystem</Title>
                     <Form>
@@ -14,12 +15,9 @@ export default function MainForm(){
                         <Label htmlFor='mat'>Matrícula:</Label>
                         <Input name="mat"></Input>
                         <SubText>Esqueceu sua senha?</SubText>
-                        
                     </Form>
                     <Button>Entrar</Button>
             </ContainerForm>
-     
-     
-     </>
- )   
+        </>
+    )   
 }
