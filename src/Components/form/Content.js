@@ -7,13 +7,11 @@ export default function MainForm(){
                     <Title>Login - ControlDatabaseSystem</Title>
                     <Form>
                         <Label htmlFor='user'>Usuário:</Label>
-                        <Input name="user"></Input>
-
+                        <Input name="user"/>
                         <Label htmlFor='pass'>Senha:</Label>
-                        <Input name="user"></Input>
-
+                        <Input name="user"/>
                         <Label htmlFor='mat'>Matrícula:</Label>
-                        <Input name="mat"></Input>
+                        <Input name="mat"/>
                         <SubText>Esqueceu sua senha?</SubText>
                     </Form>
                     <Button>Entrar</Button>

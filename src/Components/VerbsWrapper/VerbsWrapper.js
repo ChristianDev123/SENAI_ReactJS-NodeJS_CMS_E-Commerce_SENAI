@@ -1,10 +1,14 @@
 import { Col, Container, Row } from "reactstrap";
-import { TextVerb } from "./StyleVerbWrapper";
+import { SpanVerb, TextVerb } from "./StyleVerbWrapper";
 
 export default function VerbsWrapper({id,Text,children}){
+    let text = String(Text).trim();
+    const firstSpace = text.indexOf(' ');
+    const verb = text.substring(0,firstSpace);
+    text = text.substring(firstSpace); 
     return(
         <Container fluid>
-            <Row xs={1} md={2}>
+            <Row xs={1} md={2} className="py-1">
                 {id%2 === 0?
                 <>
                     <Col>
@@ -12,7 +16,10 @@ export default function VerbsWrapper({id,Text,children}){
                     </Col>
                     <Col className={"d-none d-md-inline left"}>
                         <TextVerb>
-                            {Text}
+                            <SpanVerb>
+                                {verb}
+                            </SpanVerb>
+                            {text}
                         </TextVerb>  
                     </Col>
                 </>
@@ -20,7 +27,10 @@ export default function VerbsWrapper({id,Text,children}){
                 <>
                     <Col className={"d-none d-md-inline right"}>
                         <TextVerb>
-                            {Text}
+                            <SpanVerb>
+                                {verb}
+                            </SpanVerb>
+                            {text}
                         </TextVerb>
                     </Col>
                     <Col>

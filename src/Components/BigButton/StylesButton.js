@@ -14,5 +14,4 @@ export const Button = styled.button`
 `;
 
 export const Image = styled.img`
-
 `;

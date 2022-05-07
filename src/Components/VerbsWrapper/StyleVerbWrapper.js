@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
 export const TextVerb = styled.h3`
-    height: 100%;
-    width: 100%;
     display:flex;
     align-items:center;
+    height:100%;
+    color:${(props)=>props.theme.colors.text};
     & .left{
         width:100%;
         text-align: right;
@@ -13,7 +13,9 @@ export const TextVerb = styled.h3`
         width:100%;
         text-align: left;
     }
-    & span{
-        
-    }
+`;
+
+export const SpanVerb = styled.span`
+    padding:0 5px;
+    color:${(props)=>props.theme.colors.specialText};
 `;

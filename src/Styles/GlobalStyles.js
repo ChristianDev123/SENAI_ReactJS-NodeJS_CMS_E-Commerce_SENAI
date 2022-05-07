@@ -10,7 +10,7 @@ export const Global = createGlobalStyle`
         background-color:${(props)=>props.theme.colors.background};
         transition: 1s;
         height:100vh;
-        width:100vw;
+        width:100%;
     }
     :root{
         --primary-color:#D71709;
