@@ -3,7 +3,6 @@ import Header from "../Components/Header/Header";
 import InputTextBox from "../Components/InputTextBox/InputTextBox";
 import TitleVerb from "../Components/TitleVerbs/TitleVerbs";
 import styled from 'styled-components';
-import SelectImageBox from "../Components/SelectImageBox/SelectImageBox";
 import { Col, Row } from "reactstrap";
 import SizeBox from "../Components/SizeBox/SizeBox";
 import ValorBox from "../Components/ValorBox/ValorBox";
@@ -11,9 +10,10 @@ import TableForm from "../Components/TableForm/TableForm";
 import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
 
-export default function PostManagementPage({changeTheme,currentTheme}){
+export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
-    const [codigoProduto,setCodigoProduto] = useState('');
+    const [atualCodigoProduto,setAtualCodigoProduto] = useState('');
+    const [novoCodigoProduto,setNovoCodigoProduto] = useState('');
     const [qtdProduto,setQtdProduto] = useState('');
     const [tamanhoProd,setTamanhoProd] = useState('G');    
     const [valor,setValor] = useState('');
@@ -25,10 +25,19 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
             <main>
-                <TitleVerb text="Post New Product in Database" colorText="#3385ff"/>
+                <TitleVerb text="Update an Existent Product" colorText="#3385ff"/>
                 <Form onSubmit={(event)=>event.preventDefault()}>
                     <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
-                    <InputTextBox label="Codigo do Produto:" state={codigoProduto} changeState={setCodigoProduto}/>
+                    <CodeLineWrapper>
+                        <Row xs={1} md={2} className="gap-4 gap-md-0">
+                            <Col>
+                                <InputTextBox label="Código Atual do Produto:" state={atualCodigoProduto} changeState={setAtualCodigoProduto}/>
+                            </Col>
+                            <Col>
+                                <InputTextBox label="Novo Código do Produto:" state={novoCodigoProduto} changeState={setNovoCodigoProduto}/>
+                            </Col>
+                        </Row>
+                    </CodeLineWrapper>
                     <BottomSide>
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
                             <Col md={6}>
@@ -51,7 +60,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                             </Col>
                         </Row>
                         <WrapperLastLine>
-                            <AreaDescription idInput="DescriptionArea" state={description} changeState={setDescription} />
+                            <AreaDescription idInput="DescriptionAreaUpdate"  state={description} changeState={setDescription} />
                             <ButtonSubmit />
                         </WrapperLastLine>
                     </BottomSide>
@@ -93,4 +102,8 @@ const WrapperValue = styled.div`
     display:flex;
     align-items: center;
     justify-content: center;
+`;
+
+const CodeLineWrapper = styled.div`
+    margin-top:15px;
 `;
