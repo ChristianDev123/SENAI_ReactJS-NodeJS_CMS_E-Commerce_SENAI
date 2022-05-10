@@ -5,6 +5,7 @@ import { ThemeProvider } from 'styled-components';
 import { DarkTheme, LightTheme } from './Styles/theme';
 import { useState } from "react";
 import SelectionPage from "./Pages/SelectionPage";
+import PostManagementPage from "./Pages/PostManagementPage";
 
 export default function App(){
   const [isDark,setIsDark] = useState(false);
@@ -15,6 +16,10 @@ export default function App(){
       <Routes>
         <Route path='/' element={<LoginPage changeTheme={setIsDark} currentTheme={isDark}/>} />
         <Route path="/selection" element={<SelectionPage changeTheme={setIsDark} currentTheme={isDark}/>} />
+        <Route path="/postpage" element={<PostManagementPage changeTheme={setIsDark} currentTheme={isDark}/>} />
+        {/* <Route element={} /> */}
+        {/* <Route element={} /> */}
+        {/* <Route element={} /> */}
         {/* <Route element={} /> */}
       </Routes>
     </ThemeProvider>

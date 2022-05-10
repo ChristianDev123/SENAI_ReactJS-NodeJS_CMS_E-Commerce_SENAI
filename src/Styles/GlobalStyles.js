@@ -8,9 +8,8 @@ export const Global = createGlobalStyle`
     }
     html,body,#root{
         background-color:${(props)=>props.theme.colors.background};
-        transition: 1s;
-        height:100vh;
         width:100%;
+        height:100%;
     }
     :root{
         --primary-color:#D71709;
@@ -18,6 +17,7 @@ export const Global = createGlobalStyle`
         --dark-color_800:#102E4AB2;
         --dark-color_700:#102E4A99;
         --dark-color_600:#102E4A66;
+        --detail-line:#586D81;
         --bk-color:#fff;
         --default-color-form:#F4F4F9;
         --main-font:font-family: Damion;
