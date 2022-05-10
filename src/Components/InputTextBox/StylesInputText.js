@@ -9,17 +9,16 @@ export const InputWrapper = styled.div`
 
 export const Input = styled.input`
     border:none;
-    border-bottom: 1px solid var(--primary-color);
+    border-bottom: 1px solid ${(props)=>props.theme.colors.specialText};
     opacity:0.5;
     background:transparent;
     &:hover{
-        border-bottom:2px solid var(--primary-color);
+        border-bottom:2px solid ${(props)=>props.theme.colors.specialText};
         opacity:0.75;   
     }
-    
     &:focus{
         opacity:1;
-        border-bottom:2.5px solid var(--primary-color);
+        border-bottom:2.5px solid ${(props)=>props.theme.colors.specialText};
         outline: none;
     }
     transition: 0.5s;;
@@ -28,4 +27,5 @@ export const Input = styled.input`
 export const Label = styled.label`
     padding: 5px 0;
     font-family:22px;
+    color:${(props)=>props.theme.colors.text};
 `;

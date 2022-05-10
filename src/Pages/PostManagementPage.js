@@ -30,9 +30,9 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                     <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
                     <InputTextBox label="Codigo do Produto:" state={codigoProduto} changeState={setCodigoProduto}/>
                     <BottomSide>
-                        <Row xs={2}>
-                            <Col xs={8}>
-                                <Row xs={2}>
+                        <Row xs={1} md={2} className="gap-4 gap-md-0">
+                            <Col md={6}>
+                                <Row className="gap-4 gap-md-0" xs={1} md={2}>
                                     {/* <Col>
                                         <SelectImageBox label="Imagem do Produto:"/>
                                     </Col> */}
@@ -40,19 +40,19 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                                         <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} />
                                     </Col>
                                     <Col>
-                                        <ValorBox label="Valor: " state={valor} changeState={setValor} idInput="valorProduto" />
+                                        <WrapperValue>
+                                            <ValorBox label="Valor: " state={valor} changeState={setValor} idInput="valorProduto" />
+                                        </WrapperValue>
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col xs={4}>
+                            <Col md={6}>
                                 <TableForm contents={existSize}/>
                             </Col>
                         </Row>
                         <WrapperLastLine>
                             <AreaDescription  />
-                            <SubmitWrapper>
-                                <ButtonSubmit />
-                            </SubmitWrapper>
+                            <ButtonSubmit />
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
@@ -72,17 +72,24 @@ const Form = styled.form`
 
 const WrapperLastLine = styled.div`
     display:flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     width:90%;
+    margin:auto;
+    margin-top:20px;
+    gap:2rem;
+    @media screen and (min-width:768px) {
+        flex-direction: row;
+    }
 `
-
-const SubmitWrapper = styled.div`
-    display:flex;
-    align-items: center;
-    justify-content: center;
-`;
 
 const BottomSide = styled.div`
     margin-top:20px;
+`;
+
+const WrapperValue = styled.div`
+    display:flex;
+    align-items: center;
+    justify-content: center;
 `;

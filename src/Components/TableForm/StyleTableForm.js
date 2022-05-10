@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const WrapperTable = styled.div`
     padding:10px;
-    border:1px solid black;
+    border:1px solid ${(props)=>props.theme.colors.text};
     border-radius:10px;
-    width:80%;
 `;
 
 export const Table = styled.table`
@@ -21,9 +20,11 @@ export const TableBody = styled.tbody`
 
 export const ColumnHeader = styled.th`
     padding:10px;
+    color:${(props)=>props.theme.colors.text};
 `;
 
 export const ColumnBody = styled.td`
+    color:${(props)=>props.theme.colors.text};
 `;
 
 export const ColumnWrapper = styled.tr`

@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const WrapperText = styled.div`
     margin:auto;
+    margin-top:10px;
+    margin-bottom: 10px;
     max-width: 85%;
     display:flex;
     align-items:center;
