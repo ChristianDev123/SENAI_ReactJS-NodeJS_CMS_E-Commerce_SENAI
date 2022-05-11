@@ -3,7 +3,6 @@ import Axios from 'axios'
 import { useState } from 'react';
 import * as yup from 'yup'
 export default function MainForm() {
-
     const [user, set_user] = useState({
         user: "",
         pass: "",
@@ -13,7 +12,6 @@ export default function MainForm() {
         type: '',
         message: ''
     })
-    const ValueInput = e => set_user({ ...user, [e.target.name]: e.target.value })
     const [ValidateUser, set_ValidateUser] = useState();
 
     const VerifieUser = async e => {
@@ -36,7 +34,6 @@ export default function MainForm() {
             user: '',
             pass: '',
             mat: ''
-
         })
     }
 
@@ -65,17 +62,24 @@ export default function MainForm() {
             return false;
         }
     }
+
     return (
         <>
             <ContainerForm>
                 <Title>Login - ControlDatabaseSystem</Title>
                 <Form>
                     <Label htmlFor='user'>Usuário:</Label>
-                    <Input name="user" onChange={(e) => ValueInput(e)} />
+                    <Input name="user" value={user.user} onChange={(e)=>set_user((VA)=>{
+                        return{...VA,user:e.target.value};
+                    })} />
                     <Label htmlFor='pass'>Senha:</Label>
-                    <Input name="pass" onChange={(e) => ValueInput(e)} />
+                    <Input name="pass" value={user.pass} onChange={(e)=>set_user((VA)=>{
+                        return{...VA,pass:e.target.value};
+                    })} />
                     <Label htmlFor='mat'>Matrícula:</Label>
-                    <Input name="mat" onChange={(e) => ValueInput(e)} />
+                    <Input name="mat" value={user.mat} onChange={(e)=>set_user((VA)=>{
+                        return{...VA,mat:e.target.value};
+                    })} />
                     <SubText>Esqueceu sua senha?</SubText>
                 </Form>
                 <Button onClick={VerifieUser}>Entrar</Button>
