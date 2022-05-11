@@ -1,12 +1,16 @@
 import { ContainerForm, Title, Form, Input, Label, SubText, Button, Situation } from './styledContent'
 import Axios from 'axios'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as yup from 'yup'
+import ReactLoading from 'react-loading';
+import { useNavigate } from 'react-router-dom'
+
 export default function MainForm() {
     const [user, set_user] = useState({ user: "", pass: "", mat: "" });
     const [status, set_status] = useState({ type: '', message: '' })
     const [validateUser, set_ValidateUser] = useState(false);
-    
+    const navigate = useNavigate();
+
     async function VerifieUser(e){
         e.preventDefault();
         if (!await Validation()) return;
@@ -56,6 +60,14 @@ export default function MainForm() {
         }
     }
 
+    useEffect(()=>{
+        if(validateUser){
+            setTimeout(()=>(
+                navigate('selection',{replace:true})
+            ),5000);
+        }
+    },[validateUser])
+
     return (
         <>
             <ContainerForm>
@@ -77,11 +89,12 @@ export default function MainForm() {
                 </Form>
                 <Button onClick={VerifieUser}>Entrar</Button>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
-                {validateUser ===  true? 
+                {validateUser? 
                     (<Situation style={{color: 'green'}}>Usuário Logado</Situation>) 
                     : 
                     (<Situation style={{color: "red"}}>Usuário Incorreto</Situation>)
                 }
+                {validateUser && <ReactLoading type="spin" color="#D71709" height="50px" width="50px"/>}
             </ContainerForm>
         </>
     )
