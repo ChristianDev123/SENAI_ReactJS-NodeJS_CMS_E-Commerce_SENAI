@@ -10,6 +10,7 @@ import ValorBox from "../Components/ValorBox/ValorBox";
 import TableForm from "../Components/TableForm/TableForm";
 import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
+import Navbar from "../Components/NavBar/Navbar";
 
 export default function PostManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -33,9 +34,9 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
                             <Col md={6}>
                                 <Row className="gap-4 gap-md-0" xs={1} md={2}>
-                                    {/* <Col>
-                                        <SelectImageBox label="Imagem do Produto:"/>
-                                    </Col> */}
+                                    <Col>
+                                        <SelectImageBox idInput="imageSelectPost" label="Imagem do Produto:"/>
+                                    </Col>
                                     <Col>
                                         <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} />
                                     </Col>
@@ -56,6 +57,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
+                <Navbar/>
             </main> 
         </>
     );

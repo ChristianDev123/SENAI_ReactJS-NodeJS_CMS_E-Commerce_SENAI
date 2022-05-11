@@ -19,7 +19,6 @@ export const Label = styled.label`
     padding:3px 25px;
     border-radius:10px;
     cursor:pointer;
-
     &:hover{
         background:var(--primary-color);
         padding:4px 27px;
@@ -27,6 +26,7 @@ export const Label = styled.label`
         font-weight:700;
         color:var(--bk-color);
     }
+    transition:.5s;
 `;
 
 export const SelectInput = styled.input`

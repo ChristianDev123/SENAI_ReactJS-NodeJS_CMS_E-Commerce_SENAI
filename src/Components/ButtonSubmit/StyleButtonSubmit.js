@@ -17,6 +17,6 @@ export const Button = styled.input`
         font-size:20px;
         font-weight:700;
         color:var(--bk-color);
-        transition:0.7s;
     }
+    transition:0.5s;
 `;

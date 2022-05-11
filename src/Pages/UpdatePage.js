@@ -9,6 +9,7 @@ import ValorBox from "../Components/ValorBox/ValorBox";
 import TableForm from "../Components/TableForm/TableForm";
 import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
+import SelectImageBox from "../Components/SelectImageBox/SelectImageBox";
 
 export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -42,9 +43,9 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
                             <Col md={6}>
                                 <Row className="gap-4 gap-md-0" xs={1} md={2}>
-                                    {/* <Col>
-                                        <SelectImageBox label="Imagem do Produto:"/>
-                                    </Col> */}
+                                    <Col>
+                                        <SelectImageBox idInput="ImageSelectUpdate" label="Imagem do Produto:"/>
+                                    </Col>
                                     <Col>
                                         <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} />
                                     </Col>
