@@ -1,7 +1,6 @@
 const sequelize = require('sequelize')
 const table = require('../models/User')
 
-
 const new_User = async(dados)=>{
     const usuario = await table.create({
         id:"null",
@@ -10,4 +9,5 @@ const new_User = async(dados)=>{
         matricula: dados.mat
     })
 }
+
 module.exports = new_User;

@@ -13,9 +13,15 @@ const VerificaUsuario = async (user) => {
   }
   else {
     return UserExists = true;
-
   }
 }
+
+rota.get('/createtableuser',(req,res)=>{
+  Tabela();
+  console.log('<h2>Tabela "User" Criada no banco de dados "Login" com sucesso!<h2>');
+  res.status(200).send('<h2>Tabela "User" Criada no banco de dados "Login" com sucesso!<h2>');
+});
+
 rota.post("/banco", async (req, res) => {
   const dados = req.body
   const Verifier = await user.findOne({
@@ -29,19 +35,20 @@ rota.post("/banco", async (req, res) => {
   VerificaUsuario(Verifier);
 
   if (UserExists == true) {
-    res.send({ user: "True" })
+    res.send({ user: true })
     console.log("o usuario existe")
   }
   else {
-    res.send({ user: "false" })
+    res.send({ user: false })
     console.log("o usuário não existe")
   }
 });
+
 rota.post("/inserir", async (req, res) => {
   const user = req.body;
   new_User(user)
   res.send({ mensagem: "Usuário cadastrado" });
-
 });
+
 
 module.exports = rota;
