@@ -12,18 +12,18 @@ export default function App(){
   const [isDark,setIsDark] = useState(false);
   return(
     <>
-      <ThemeProvider theme={isDark?DarkTheme:LightTheme}>
-        <Global />
-        <Routes>
-          <Route path='/' element={<LoginPage changeTheme={setIsDark} currentTheme={isDark}/>} />
-          <Route path="/selection" element={<SelectionPage changeTheme={setIsDark} currentTheme={isDark}/>} />
-          <Route path="/postpage" element={<PostManagementPage changeTheme={setIsDark} currentTheme={isDark}/>} />
-          <Route path="/updatepage" element={<UpdateManagementPage changeTheme={setIsDark} currentTheme={isDark}/>} />
-          {/* <Route element={} /> */}
-          {/* <Route element={} /> */}
-          {/* <Route element={} /> */}
-        </Routes>
-      </ThemeProvider>
+    <ThemeProvider theme={isDark?DarkTheme:LightTheme}>
+      <Global />
+      <Routes>
+        <Route path='/' element={<LoginPage changeTheme={setIsDark} currentTheme={isDark}/>} />
+        <Route path="/selection" element={<SelectionPage changeTheme={setIsDark} currentTheme={isDark}/>} />
+        <Route path="/postpage" element={<PostManagementPage changeTheme={setIsDark} currentTheme={isDark}/>} />
+        <Route path="/updatepage" element={<UpdateManagementPage changeTheme={setIsDark} currentTheme={isDark}/>} />
+        {/* <Route element={} /> */}
+        {/* <Route element={} /> */}
+        {/* <Route element={} /> */}
+      </Routes>
+    </ThemeProvider>
     </>
   );
 }
