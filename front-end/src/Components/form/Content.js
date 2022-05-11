@@ -3,17 +3,10 @@ import Axios from 'axios'
 import { useState } from 'react';
 import * as yup from 'yup'
 export default function MainForm() {
-    const [user, set_user] = useState({
-        user: "",
-        pass: "",
-        mat: "",
-    });
-    const [status, set_status] = useState({
-        type: '',
-        message: ''
-    })
-    const [ValidateUser, set_ValidateUser] = useState();
-
+    const [user, set_user] = useState({ user: "", pass: "", mat: "" });
+    const [status, set_status] = useState({ type: '', message: '' })
+    const [validateUser, set_ValidateUser] = useState(false);
+    
     async function VerifieUser(e){
         e.preventDefault();
         if (!await Validation()) return;
@@ -24,9 +17,6 @@ export default function MainForm() {
         })
         .then((response) => {set_ValidateUser(response.data.user)})
         .catch((err) => console.log("o erro foi" + err))
-        
-        console.log(ValidateUser);
-        
         const saveDataForm = true;
         if (saveDataForm) {
             set_status({
@@ -53,11 +43,11 @@ export default function MainForm() {
                 .string("ERRO: Necessário preencher todos os campos")
                 .required("Necessário preencher o campo usuário!"),
         });
-        try {
+
+        try{
             await schema.validate(user)
             return true;
-        }
-        catch (err) {
+        }catch(err){
             set_status({
                 type: 'error',
                 message: err.errors
@@ -86,13 +76,12 @@ export default function MainForm() {
                     <SubText>Esqueceu sua senha?</SubText>
                 </Form>
                 <Button onClick={VerifieUser}>Entrar</Button>
-                {status.type === "error" ? (
-                    <Situation style={{ color: "red" }}>{status.message}</Situation>
-                ) : ""}
-
-                {ValidateUser ===  "True"? (<Situation style={{color: 'green'}}>Usuário Logado</Situation>) : ""}
-
-                {ValidateUser === "false" ? (<Situation style={{color: "red"}}>Usuário Incorreto</Situation>) : ""}
+                {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
+                {validateUser ===  true? 
+                    (<Situation style={{color: 'green'}}>Usuário Logado</Situation>) 
+                    : 
+                    (<Situation style={{color: "red"}}>Usuário Incorreto</Situation>)
+                }
             </ContainerForm>
         </>
     )
