@@ -4,7 +4,7 @@ export const WrapperText = styled.div`
     margin:auto;
     margin-top:10px;
     margin-bottom: 10px;
-    max-width: 85%;
+    max-width: 80%;
     display:flex;
     align-items:center;
     justify-content: center;
@@ -14,4 +14,5 @@ export const WrapperText = styled.div`
 export const StyledText = styled.h2`
     color:${(props)=>(props.color)};
     text-align: center;
+    font-size:28px;
 `;

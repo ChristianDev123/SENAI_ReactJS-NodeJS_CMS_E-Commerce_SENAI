@@ -9,7 +9,6 @@ export const Global = createGlobalStyle`
     html,body,#root{
         background-color:${(props)=>props.theme.colors.background};
         width:100%;
-        height:100%;
     }
     :root{
         --primary-color:#D71709;

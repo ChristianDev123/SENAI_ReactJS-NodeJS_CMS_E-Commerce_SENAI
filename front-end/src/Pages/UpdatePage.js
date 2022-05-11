@@ -10,6 +10,7 @@ import TableForm from "../Components/TableForm/TableForm";
 import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
 import SelectImageBox from "../Components/SelectImageBox/SelectImageBox";
+import Navbar from "../Components/NavBar/Navbar";
 
 export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -66,6 +67,9 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
+                <SidebarWrapper>
+                    <Navbar/>
+                </SidebarWrapper>
             </main> 
         </>
     );
@@ -77,7 +81,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:10px;
+    padding:20px;
 `
 
 const WrapperLastLine = styled.div`
@@ -107,4 +111,10 @@ const WrapperValue = styled.div`
 
 const CodeLineWrapper = styled.div`
     margin-top:15px;
+`;
+
+const SidebarWrapper = styled.div`
+    margin:auto;
+    padding:0 10%;
+    margin-top:7%;
 `;

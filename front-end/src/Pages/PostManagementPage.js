@@ -57,7 +57,9 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
-                <Navbar/>
+                <SidebarWrapper>
+                    <Navbar/>
+                </SidebarWrapper>
             </main> 
         </>
     );
@@ -65,11 +67,10 @@ export default function PostManagementPage({changeTheme,currentTheme}){
 
 const Form = styled.form`
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:10px;
+    padding:20px;
 `
 
 const WrapperLastLine = styled.div`
@@ -95,4 +96,10 @@ const WrapperValue = styled.div`
     display:flex;
     align-items: center;
     justify-content: center;
+`;
+
+const SidebarWrapper = styled.div`
+    margin:auto;
+    padding:0 10%;
+    margin-top:7%;
 `;

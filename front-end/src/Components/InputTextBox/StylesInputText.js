@@ -21,7 +21,7 @@ export const Input = styled.input`
         border-bottom:2.5px solid ${(props)=>props.theme.colors.specialText};
         outline: none;
     }
-    transition: 0.5s;;
+    transition: 0.5s;
 `;
 
 export const Label = styled.label`

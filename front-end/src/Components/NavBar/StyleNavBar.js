@@ -5,36 +5,69 @@ import {Autorenew} from '@styled-icons/material/Autorenew';
 import {RemoveCircleOutline} from '@styled-icons/material-twotone/RemoveCircleOutline';
 import {PlusCircle} from '@styled-icons/bootstrap/PlusCircle';
 
+export const Wrapper = styled.section`
+    width:100%;
+    margin:auto;
+    display:flex;
+    justify-content: center;
+    background:${(props)=>props.theme.colors.backgroundNavbar};
+    border-radius:15px 15px 0 0;
+`
+
 export const ViewIcon = styled(Eye)`
     width:48px;
     height:48px;
+    color:${(props)=>props.theme.colors.colorIcons};
+    &:hover{
+        color:#5CD65C;
+        width:50px;
+        height:50px;
+        top:5px;
+    }
+    transition: 0.5s;
 `;
 
 export const UpdateIcon = styled(Autorenew)`
     width:48px;
     height:48px;
+    color:${(props)=>props.theme.colors.colorIcons};
+    &:hover{
+        color:#0000ff;
+        width:50px;
+        height:50px;
+        top:5px;
+    }
+    transition: 0.5s;
 `;
 
 export const RemoveIcon = styled(RemoveCircleOutline)`
     width:48px;
     height:48px;
+    color:${(props)=>props.theme.colors.colorIcons};
+    &:hover{
+        color:#B30000;
+        width:50px;
+        height:50px;
+        top:5px;
+    }
+    transition: 0.5s;
 `;
 
 export const PostIcon = styled(PlusCircle)`
     width:48px;
     height:48px;
+    color:${(props)=>props.theme.colors.colorIcons};
+    &:hover{
+        color:#3385FF;
+        width:50px;
+        height:50px;
+        top:5px;
+    }
+    transition: 0.5s;
 `;
-
-export const Wrapper = styled.section`
-    width:100%;
-    display:flex;
-    justify-content: center;
-`
 
 export const Button = styled.button`
-    background:${(props)=>console.log(props)};
-`;
-
-export const Image = styled.img`
-    
+    padding:2px 15px;
+    border:none;
+    background:transparent
 `;
