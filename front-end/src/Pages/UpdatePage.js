@@ -27,7 +27,7 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
             <main>
-                <TitleVerb text="Update an Existent Product" colorText="#3385ff"/>
+                <TitleVerb text="Update an Existent Product" colorText="#0000ff"/>
                 <Form onSubmit={(event)=>event.preventDefault()}>
                     <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
                     <CodeLineWrapper>

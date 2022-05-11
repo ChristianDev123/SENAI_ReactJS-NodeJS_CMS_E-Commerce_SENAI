@@ -1,5 +1,5 @@
 const sequelize = require('sequelize');
-const db = require('../database/db');
+const db = require('../config/db');
 
 const user = db.define('Users',{
     id:{
@@ -20,7 +20,6 @@ const user = db.define('Users',{
         type:sequelize.STRING,
         allowNull:false
     }
-
-})
+});
 
 module.exports = user;

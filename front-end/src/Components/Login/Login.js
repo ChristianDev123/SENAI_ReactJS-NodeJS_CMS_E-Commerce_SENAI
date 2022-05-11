@@ -3,7 +3,7 @@ import LeftMain from '../carrousel/Carrousel';
 import MainForm from '../form/Content';
 import { WrapperSection } from './StylesLogin';
 
-export default function Login({changeTheme,currentTheme }) {
+export default function Login({changeTheme,currentTheme}) {
   return (
       <WrapperSection>
         <Row xs={1} lg={2} className='h-100'>

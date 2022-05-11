@@ -8,7 +8,8 @@ export const Global = createGlobalStyle`
     }
     html,body,#root{
         background-color:${(props)=>props.theme.colors.background};
-        width:100%;
+        width:100vw;
+        height:100vh;
     }
     :root{
         --primary-color:#D71709;

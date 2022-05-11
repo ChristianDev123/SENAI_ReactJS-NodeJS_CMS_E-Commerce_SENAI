@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 export default function MainForm() {
     const [user, set_user] = useState({ user: "", pass: "", mat: "" });
     const [status, set_status] = useState({ type: '', message: '' })
-    const [validateUser, set_ValidateUser] = useState(false);
+    const [validateUser, set_ValidateUser] = useState(null);
     const navigate = useNavigate();
 
     async function VerifieUser(e){
@@ -92,7 +92,7 @@ export default function MainForm() {
                 {validateUser? 
                     (<Situation style={{color: 'green'}}>Usuário Logado</Situation>) 
                     : 
-                    (<Situation style={{color: "red"}}>Usuário Incorreto</Situation>)
+                    (<Situation style={{color: "red"}}>{validateUser === null?'':'Usuário Incorreto'}</Situation>)
                 }
                 {validateUser && <ReactLoading type="spin" color="#D71709" height="50px" width="50px"/>}
             </ContainerForm>
