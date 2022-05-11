@@ -101,3 +101,15 @@ export const SubText = styled.a`
         font-size:11px;
     }
 `;
+export const Situation = styled.p`
+  font-family: Open Sans;
+  font-size: 16px;
+  text-align: left;
+  padding: 10px 10px 0 5px;
+  @media screen and (max-width: 350px) {
+    font-size: 14px;
+  }
+  @media screen and (min-width: 370px) {
+    font-size: 22px;
+  }
+`;
