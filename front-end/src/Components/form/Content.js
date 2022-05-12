@@ -3,7 +3,7 @@ import Axios from 'axios'
 import { useEffect, useState } from 'react';
 import * as yup from 'yup'
 import ReactLoading from 'react-loading';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 export default function MainForm() {
     const [user, set_user] = useState({ user: "", pass: "", mat: "" });
@@ -14,13 +14,10 @@ export default function MainForm() {
     async function VerifieUser(e){
         e.preventDefault();
         if (!await Validation()) return;
-        Axios.post("http://localhost:3001/banco", {
-            user: user.user,
-            pass: user.pass,
-            mat: user.mat
-        })
-        .then((response) => {set_ValidateUser(response.data.user)})
-        .catch((err) => console.log("o erro foi" + err))
+        Axios.post("http://localhost:3001/banco", user)
+        .then(({data}) => set_ValidateUser(data.user))
+        .catch((err) => console.log("o erro foi" + err));
+        
         const saveDataForm = true;
         if (saveDataForm) {
             set_status({
@@ -61,11 +58,7 @@ export default function MainForm() {
     }
 
     useEffect(()=>{
-        if(validateUser){
-            setTimeout(()=>(
-                navigate('selection',{replace:true})
-            ),5000);
-        }
+        if(validateUser) setTimeout(()=>(navigate('selection',{replace:true})),5000);
     },[validateUser])
 
     return (
@@ -87,7 +80,7 @@ export default function MainForm() {
                     })} />
                     <SubText>Esqueceu sua senha?</SubText>
                 </Form>
-                <Button onClick={VerifieUser}>Entrar</Button>
+                <Button onClick={(event)=>VerifieUser(event)}>Entrar</Button>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
                 {validateUser? 
                     (<Situation style={{color: 'green'}}>Usuário Logado</Situation>) 

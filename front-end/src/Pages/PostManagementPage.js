@@ -22,6 +22,18 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         {size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}
     ]);
     const [description,setDescription ] = useState('');
+
+    /* padrão obj para enviar ao backend:
+        {
+            nameProduct:nomeProduto,
+            codeProduct:codeProduto,
+            qtdProduct:qtdProduto,
+            sizeProduct:tamanhoProd,
+            unitValue:valor
+        } 
+    */
+
+
     return(
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
