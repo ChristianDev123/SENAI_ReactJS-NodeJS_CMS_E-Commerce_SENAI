@@ -11,6 +11,7 @@ import TableForm from "../Components/TableForm/TableForm";
 import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
 import Navbar from "../Components/NavBar/Navbar";
+import * as yup from 'yup'
 
 export default function PostManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -32,8 +33,34 @@ export default function PostManagementPage({changeTheme,currentTheme}){
             unitValue:valor
         } 
     */
-
-
+    async function Validation(obj) {
+        let result = false;
+        let schema = yup.object().shape({
+            nameProduct:
+                yup
+                .string()
+                .required(),
+            codeProduct:
+                yup
+                .string()
+                .required(),
+            qtdProduct:
+                yup
+                .string()
+                .required(),
+            sizeProduct:
+                yup
+                .string()
+                .required(),
+            unitValue:
+                yup
+                .string()
+                .required()
+        });
+        schema
+        .isValid(obj)
+        .then((response)=>{result=response})
+    }
     return(
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
