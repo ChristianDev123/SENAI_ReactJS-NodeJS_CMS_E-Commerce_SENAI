@@ -12,6 +12,7 @@ export const Input = styled.input`
     border-bottom: 1px solid ${(props)=>props.theme.colors.specialText};
     opacity:0.5;
     background:transparent;
+    color:${(props)=>props.theme.colors.text};
     &:hover{
         border-bottom:2px solid ${(props)=>props.theme.colors.specialText};
         opacity:0.75;   

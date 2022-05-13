@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const stockTable = require('./Stocks');
 const db = require('../config/db');
 
 const products = db.define('Products',{
@@ -16,6 +17,12 @@ const products = db.define('Products',{
         type: Sequelize.STRING,
         allowNull: false
     },
+    description:{
+        type:Sequelize.TEXT,
+        allowNull:false
+    }
 });
+
+products.hasMany(stockTable,{foreignKey:'id_Product'});
 
 module.exports = products;

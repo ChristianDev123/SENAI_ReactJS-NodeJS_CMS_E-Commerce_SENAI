@@ -14,7 +14,7 @@ export default function MainForm() {
     async function VerifieUser(e){
         e.preventDefault();
         if (!await Validation()) return;
-        Axios.post("http://localhost:3001/banco", user)
+        Axios.post("http://localhost:3001/userverification", user)
         .then(({data}) => set_ValidateUser(data.user))
         .catch((err) => console.log("o erro foi" + err));
         

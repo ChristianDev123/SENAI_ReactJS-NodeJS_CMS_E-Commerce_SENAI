@@ -81,7 +81,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:20px;
+    padding:2%;
 `
 
 const WrapperLastLine = styled.div`

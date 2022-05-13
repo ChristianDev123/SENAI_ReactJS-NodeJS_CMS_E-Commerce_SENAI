@@ -10,6 +10,7 @@ export const LabelText = styled.h4`
     text-align: center;
     font-size:17px;
     font-weight: 400;
+    color:${(props)=>props.theme.colors.text};
 `;
 export const Label = styled.label`
     margin:auto;

@@ -12,6 +12,7 @@ import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
 import Navbar from "../Components/NavBar/Navbar";
 import * as yup from 'yup'
+import axios from "axios";
 
 export default function PostManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -23,52 +24,81 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         {size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}
     ]);
     const [description,setDescription ] = useState('');
+    const [status,setStatus] = useState('');
+    const [confirmation,setConfirmation] = useState(false);
 
     /* padrão obj para enviar ao backend:
         {
             nameProduct:nomeProduto,
             codeProduct:codeProduto,
+            descProduct:description,
             qtdProduct:qtdProduto,
             sizeProduct:tamanhoProd,
             unitValue:valor
         } 
     */
+
+    async function createNewProduct(event){
+        event.preventDefault()
+        const obj = {
+            nameProduct:nomeProduto,
+            codeProduct:codigoProduto,
+            qtdProduct:qtdProduto,
+            sizeProduct:tamanhoProd,
+            unitValue:Number(valor),
+            descProduct:description
+        } 
+        if(Validation(obj)){
+           axios.post('http://localhost:3001/newProduct',obj)
+           .then((response)=>setConfirmation(response))
+           .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
+        }
+    }
+    
     async function Validation(obj) {
-        let result = false;
         let schema = yup.object().shape({
-            nameProduct:
+            descProduct:
                 yup
-                .string()
-                .required(),
-            codeProduct:
-                yup
-                .string()
-                .required(),
-            qtdProduct:
-                yup
-                .string()
-                .required(),
-            sizeProduct:
-                yup
-                .string()
-                .required(),
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Descrição"!'),
             unitValue:
                 yup
-                .string()
-                .required()
+                .number("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Nome Produto"!')
+                .integer(),
+            qtdProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Atual Quantidade em Estoque"!'),
+            codeProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Código do Produto"!'),
+            nameProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Nome do Produto"!'),
         });
-        schema
-        .isValid(obj)
-        .then((response)=>{result=response})
+        try{
+            await schema.validate(obj)
+            return true;
+        }catch(err){
+            setStatus({
+                type: 'error',
+                message: err.errors
+            })
+            return false;
+        }
     }
+
     return(
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
             <main>
                 <TitleVerb text="Post New Product in Database" colorText="#3385ff"/>
-                <Form onSubmit={(event)=>event.preventDefault()}>
-                    <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
-                    <InputTextBox label="Codigo do Produto:" state={codigoProduto} changeState={setCodigoProduto}/>
+                <Form onSubmit={(event)=>createNewProduct(event)}>
+                    <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto} name="nameProduct"/>
+                    <InputTextBox label="Codigo do Produto:" state={codigoProduto} changeState={setCodigoProduto} name="codeProduct"/>
                     <BottomSide>
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
                             <Col md={6}>
@@ -77,11 +107,11 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                                         <SelectImageBox idInput="imageSelectPost" label="Imagem do Produto:"/>
                                     </Col>
                                     <Col>
-                                        <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} />
+                                        <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} name="qtdProduct"/>
                                     </Col>
                                     <Col>
                                         <WrapperValue>
-                                            <ValorBox label="Valor: " state={valor} changeState={setValor} idInput="valorProduto" />
+                                            <ValorBox name="unitValue" label="Valor: " state={valor} changeState={setValor} idInput="valorProduto" />
                                         </WrapperValue>
                                     </Col>
                                 </Row>
@@ -91,11 +121,13 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                             </Col>
                         </Row>
                         <WrapperLastLine>
-                            <AreaDescription idInput="DescriptionArea" state={description} changeState={setDescription} />
+                            <AreaDescription name="descProduct" idInput="DescriptionArea" state={description} changeState={setDescription} />
                             <ButtonSubmit />
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
+                {console.log(status)}
+                {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
                 <SidebarWrapper>
                     <Navbar/>
                 </SidebarWrapper>
@@ -109,7 +141,7 @@ const Form = styled.form`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding:20px;
+    padding:2%;
 `
 
 const WrapperLastLine = styled.div`
@@ -141,4 +173,17 @@ const SidebarWrapper = styled.div`
     margin:auto;
     padding:0 10%;
     margin-top:7%;
+`;
+
+const Situation = styled.p`
+    font-family: Open Sans;
+    font-size: 16px;
+    text-align: center;
+    margin-top:5%;
+    @media screen and (max-width: 350px) {
+        font-size: 14px;
+    }
+    @media screen and (min-width: 370px) {
+        font-size: 22px;
+    }
 `;

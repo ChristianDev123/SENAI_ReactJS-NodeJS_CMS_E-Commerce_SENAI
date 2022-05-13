@@ -9,7 +9,7 @@ export default function ValorBox({
     return(
         <Wrapper>
             <Label for={idInput}>{label}</Label>
-            <Input id={idInput} type="number" min="0" value={state} onChange={(event)=>changeState(event.target.value)}/>
+            <Input id={idInput} type="text" min="0" value={state} onChange={(event)=>changeState(event.target.value)}/>
         </Wrapper>
     );
 };
