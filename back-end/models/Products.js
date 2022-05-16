@@ -3,7 +3,7 @@ const stockTable = require('./Stocks');
 const db = require('../config/db');
 
 const products = db.define('Products',{
-    idProducts:{
+    idProduct:{
         type: Sequelize.INTEGER,
         allowNull:false,
         autoIncrement: true,

@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
 const newProduct = require('../database/Create_Product');
+const updateProject = require('../database/Modify_Product');
 
 class StockControll {
     static async CreateTables(req,res){
@@ -17,7 +18,13 @@ class StockControll {
     static async NewProduct(req,res){
         const objBody = req.body;
         newProduct(objBody);
-        res.status(200).send('<h2>Item registrado com sucesso!</h2>');
+        res.status(200).send('Item registrado com sucesso!');
+    }
+
+    static async UpdateProduct(req,res){
+        const objBody = req.body;
+        updateProject(objBody)
+        res.status(200).send('Modificação realizada com sucesso!')
     }
 }
 

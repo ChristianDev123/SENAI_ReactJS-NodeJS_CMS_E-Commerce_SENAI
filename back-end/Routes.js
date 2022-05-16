@@ -3,16 +3,16 @@ const rota = Router();
 const Verifier = require('./controllers/UsersVerifications');
 const StockControll = require('./controllers/StockController');
 
-rota.get("/createusertable",Verifier.NewTable)
+rota.get("/createusertable",Verifier.NewTable);
 
-rota.get('/createstocktable',StockControll.CreateTables)
+rota.get('/createstocktable',StockControll.CreateTables);
 
-rota.post("/userverification",Verifier.Verification)
+rota.post("/userverification",Verifier.Verification);
 
-rota.post("/newuser",Verifier.NewUser)
+rota.post("/newuser",Verifier.NewUser);
 
-rota.post('/newproduct',StockControll.NewProduct)
+rota.post('/newproduct',StockControll.NewProduct);
 
-
+rota.put('/updateProduct',StockControll.UpdateProduct);
 
 module.exports = rota;
