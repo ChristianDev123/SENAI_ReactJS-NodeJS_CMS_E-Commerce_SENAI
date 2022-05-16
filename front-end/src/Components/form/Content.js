@@ -15,20 +15,15 @@ export default function MainForm() {
         e.preventDefault();
         if (!await Validation()) return;
         Axios.post("http://localhost:3001/userverification", user)
-        .then(({data}) => set_ValidateUser(data.user))
-        .catch((err) => console.log("o erro foi" + err));
-        
-        const saveDataForm = true;
-        if (saveDataForm) {
-            set_status({
-                type: "sucess",
-            })
-        }
-        set_user({
-            user: '',
-            pass: '',
-            mat: ''
+        .then(({data})=>{
+            set_status({type:'sucess'})
+            set_ValidateUser(data.user)
         })
+        .catch((err)=>console.log("o erro foi" + err));
+
+        if (status.type !== 'sucess') set_status({type:'failed',message:'Usuário, matrícula ou senha incorreta!'});
+        
+        set_user({user: '', pass: '', mat: ''});
     }
 
     async function Validation() {
@@ -63,7 +58,7 @@ export default function MainForm() {
 
     return (
         <>
-            <ContainerForm>
+            <ContainerForm className="px-2">
                 <Title>Login - ControlDatabaseSystem</Title>
                 <Form>
                     <Label htmlFor='user'>Usuário:</Label>
@@ -82,6 +77,7 @@ export default function MainForm() {
                 </Form>
                 <Button onClick={(event)=>VerifieUser(event)}>Entrar</Button>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
+                {status.type === 'failed' && (<Situation style={{color:'red'}}>{status.message}</Situation>)}
                 {validateUser? 
                     (<Situation style={{color: 'green'}}>Usuário Logado</Situation>) 
                     : 

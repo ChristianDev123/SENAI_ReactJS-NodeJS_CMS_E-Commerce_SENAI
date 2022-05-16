@@ -11,6 +11,8 @@ import AreaDescription from "../Components/AreaDescription/AreaDescription";
 import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
 import SelectImageBox from "../Components/SelectImageBox/SelectImageBox";
 import Navbar from "../Components/NavBar/Navbar";
+import axios from "axios";
+import * as yup from 'yup';
 
 export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -23,12 +25,90 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
         {size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}
     ]);
     const [description,setDescription ] = useState('');
+    const [status,setStatus] = useState('');
+    const [confirmation,setConfirmation] = useState(false);
+    
+    // {
+    //     nameProduct:nomeProduto,
+    //     currentCodeProduct:atualCodigoProduto,
+    //     newCodeProduct:novoCodigoProduto,
+    //     descProduct:description,
+    //     qtdProduct:qtdProduto,
+    //     sizeProduct:tamanhoProd,
+    //     unitValue:valor
+    // } 
+
+    async function updateAnProduct(event){
+        event.preventDefault()
+        const obj = {
+            nameProduct:nomeProduto,
+            currentCodeProduct:atualCodigoProduto,
+            newCodeProduct:novoCodigoProduto,
+            qtdProduct:Number(qtdProduto),
+            sizeProduct:tamanhoProd,
+            unitValue:Number(valor),
+            descProduct:description
+        } 
+        if(Validation(obj)){
+           axios.put('http://localhost:3001/updateProduct',obj)
+           .then((response)=>setConfirmation(response))
+           .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
+        }
+        setNomeProduto('');
+        setAtualCodigoProduto('');
+        setNovoCodigoProduto('');
+        setQtdProduto('');
+        setTamanhoProd('');
+        setValor('');
+        setExistSize([{size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}]);
+    }
+    
+    async function Validation(obj) {
+        let schema = yup.object().shape({
+            descProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Descrição"!'),
+            unitValue:
+                yup
+                .number("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Nome Produto"!'),
+            qtdProduct:
+                yup
+                .number("ERRO: Necessário preencher todos os campos")
+                .integer()
+                .required('Necessário preencher o campo "Atual Quantidade em Estoque"!'),
+            currentCodeProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Código do Produto"!'),
+            newCodeProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Código do Produto"!'),
+            nameProduct:
+                yup
+                .string("ERRO: Necessário preencher todos os campos")
+                .required('Necessário preencher o campo "Nome do Produto"!'),
+        });
+        try{
+            await schema.validate(obj)
+            return true;
+        }catch(err){
+            setStatus({
+                type: 'error',
+                message: err.errors
+            })
+            return false;
+        }
+    }
+
     return(
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
             <main>
                 <TitleVerb text="Update an Existent Product" colorText="#0000ff"/>
-                <Form onSubmit={(event)=>event.preventDefault()}>
+                <Form onSubmit={(event)=>updateAnProduct(event)}>
                     <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
                     <CodeLineWrapper>
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
@@ -67,6 +147,8 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
+                <Situation style={{color:'green'}}>{confirmation.data}</Situation>
+                {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
                 <SidebarWrapper>
                     <Navbar/>
                 </SidebarWrapper>
@@ -117,4 +199,17 @@ const SidebarWrapper = styled.div`
     margin:auto;
     padding:0 10%;
     margin-top:7%;
+`;
+
+const Situation = styled.p`
+    font-family: Open Sans;
+    font-size: 16px;
+    text-align: center;
+    margin-top:5%;
+    @media screen and (max-width: 350px) {
+        font-size: 14px;
+    }
+    @media screen and (min-width: 370px) {
+        font-size: 22px;
+    }
 `;

@@ -38,12 +38,14 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         } 
     */
 
+    // useEffect(()=>{},[confirmation]);
+
     async function createNewProduct(event){
         event.preventDefault()
         const obj = {
             nameProduct:nomeProduto,
             codeProduct:codigoProduto,
-            qtdProduct:qtdProduto,
+            qtdProduct:Number(qtdProduto),
             sizeProduct:tamanhoProd,
             unitValue:Number(valor),
             descProduct:description
@@ -53,6 +55,12 @@ export default function PostManagementPage({changeTheme,currentTheme}){
            .then((response)=>setConfirmation(response))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
+        setNomeProduto('');
+        setCodigoProduto('');
+        setQtdProduto('');
+        setTamanhoProd('');
+        setValor('');
+        setExistSize([{size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}]);
     }
     
     async function Validation(obj) {
@@ -64,11 +72,11 @@ export default function PostManagementPage({changeTheme,currentTheme}){
             unitValue:
                 yup
                 .number("ERRO: Necessário preencher todos os campos")
-                .required('Necessário preencher o campo "Nome Produto"!')
-                .integer(),
+                .required('Necessário preencher o campo "Nome Produto"!'),
             qtdProduct:
                 yup
-                .string("ERRO: Necessário preencher todos os campos")
+                .number("ERRO: Necessário preencher todos os campos")
+                .integer()
                 .required('Necessário preencher o campo "Atual Quantidade em Estoque"!'),
             codeProduct:
                 yup
@@ -126,7 +134,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
-                {console.log(status)}
+                <Situation style={{color:'green'}}>{confirmation.data}</Situation>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
                 <SidebarWrapper>
                     <Navbar/>
