@@ -23,6 +23,4 @@ const products = db.define('Products',{
     }
 });
 
-products.hasMany(stockTable,{foreignKey:'id_Product'});
-
 module.exports = products;

@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
+const productsTable = require('./Products');
 
 const stocks = db.define('Stocks',{
     idStock:{
@@ -25,6 +26,5 @@ const stocks = db.define('Stocks',{
         allowNull:false
     }
 });
-
 
 module.exports = stocks;

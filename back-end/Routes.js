@@ -7,6 +7,8 @@ rota.get("/createusertable",Verifier.NewTable);
 
 rota.get('/createstocktable',StockControll.CreateTables);
 
+rota.get('/all',StockControll.SelectAll);
+
 rota.post("/userverification",Verifier.Verification);
 
 rota.post("/newuser",Verifier.NewUser);
