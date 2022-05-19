@@ -10,7 +10,7 @@ export default function SizeBox({
 }){
     return(
         <Wrapper>
-            <Label for={idInput}>{label}</Label>
+            <Label htmlFor={idInput}>{label}</Label>
             <WrapperLine>
                 <SelectSize value={stateSize} onChange={(event)=>changeStateSize(event.target.value)}>
                     <option value="G">G</option>

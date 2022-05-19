@@ -13,6 +13,8 @@ import ButtonSubmit from "../Components/ButtonSubmit/ButtonSubmit";
 import Navbar from "../Components/NavBar/Navbar";
 import * as yup from 'yup'
 import axios from "axios";
+import ReactLoading from 'react-loading';
+
 
 export default function PostManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -20,25 +22,13 @@ export default function PostManagementPage({changeTheme,currentTheme}){
     const [qtdProduto,setQtdProduto] = useState('');
     const [tamanhoProd,setTamanhoProd] = useState('G');    
     const [valor,setValor] = useState('');
-    const [existSize,setExistSize] = useState([
-        {size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}
-    ]);
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
 
-    /* padrão obj para enviar ao backend:
-        {
-            nameProduct:nomeProduto,
-            codeProduct:codeProduto,
-            descProduct:description,
-            qtdProduct:qtdProduto,
-            sizeProduct:tamanhoProd,
-            unitValue:valor
-        } 
-    */
-
-    // useEffect(()=>{},[confirmation]);
+    useEffect(()=>{
+        if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
+    },[confirmation])
 
     async function createNewProduct(event){
         event.preventDefault()
@@ -55,12 +45,12 @@ export default function PostManagementPage({changeTheme,currentTheme}){
            .then((response)=>setConfirmation(response))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
+
         setNomeProduto('');
         setCodigoProduto('');
         setQtdProduto('');
         setTamanhoProd('');
         setValor('');
-        setExistSize([{size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}]);
     }
     
     async function Validation(obj) {
@@ -125,7 +115,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                                 </Row>
                             </Col>
                             <Col md={6}>
-                                <TableForm contents={existSize}/>
+                                <TableForm update={confirmation}/>
                             </Col>
                         </Row>
                         <WrapperLastLine>
@@ -136,6 +126,9 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                 </Form>
                 <Situation style={{color:'green'}}>{confirmation.data}</Situation>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
+                <WrapperLoading>
+                    {confirmation && <ReactLoading type="spin" color="#D71709" height="50px" width="50px"/>}
+                </WrapperLoading>
                 <SidebarWrapper>
                     <Navbar/>
                 </SidebarWrapper>
@@ -194,4 +187,11 @@ const Situation = styled.p`
     @media screen and (min-width: 370px) {
         font-size: 22px;
     }
+`;
+
+const WrapperLoading = styled.div`
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 `;

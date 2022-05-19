@@ -20,6 +20,10 @@ const products = db.define('Products',{
     description:{
         type:Sequelize.TEXT,
         allowNull:false
+    },
+    id_stock:{
+        type:Sequelize.INTEGER,
+        allowNull:false
     }
 });
 

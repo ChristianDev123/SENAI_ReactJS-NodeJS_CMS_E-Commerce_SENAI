@@ -6,7 +6,7 @@ export default function SelectImageBox({label,idInput,state,changeState}){
             <LabelText>
                 {label}
             </LabelText>
-            <Label for={idInput}>Selecione </Label>
+            <Label htmlFor={idInput}>Selecione </Label>
             <SelectInput id={idInput} type="file"/>
         </SelectionWrapper>
     );

@@ -1,16 +1,18 @@
 const Sequelize = require('sequelize');
 const db = require('../config/db');
+const products = require('../models/Products');
+const stocks = require('../models/Stocks');
 const newProduct = require('../database/Create_Product');
 const updateProject = require('../database/Modify_Product');
 const GetAllProducts = require('../database/GetAll');
-const products = require('../models/Products');
-const stocks = require('../models/Stocks');
+const DeleteProducts = require('../database/DeleteProduct')
+const SearchGet = require('../database/getSearcher');
+
 class StockControll {
     static async CreateTables(req,res){
         try{
-            // products.associate = (models)=>{products.belongsTo(models.Stocks,{foreignKey:'id_Product'})}
-            stocks.belongsTo(products,{foreignKey:'id_Product', as:'id__Product'});
-            products.hasMany(stocks,{foreignKey:'id_Product', as:"id_Product"});
+            stocks.hasMany(products,{foreignKey:'id_stock'});
+            products.belongsTo(stocks,{foreignKey:'id_stock'});
             const result = await db.sync({force:true});
             res.status(200).send('<h2>Tabelas "Products" e "Stocks" foram criadas com êxito!<h2>');
         }catch(err){
@@ -32,8 +34,17 @@ class StockControll {
     }
 
     static async SelectAll(req,res){
-        GetAllProducts();
-        res.status(200).send('Todos os registro foram enviados com sucesso!');
+        GetAllProducts(res);
+    }
+    
+    static async DeleteProduct(req,res){
+        const arrDelete = req.body.arrToDelete 
+        DeleteProducts(arrDelete,res);
+    }
+
+    static async SearchBarGet(req,res){
+        const search = req.query;
+        SearchGet(search,res);
     }
 }
 

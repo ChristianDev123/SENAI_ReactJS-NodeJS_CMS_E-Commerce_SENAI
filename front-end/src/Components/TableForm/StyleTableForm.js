@@ -27,5 +27,6 @@ export const ColumnBody = styled.td`
     color:${(props)=>props.theme.colors.text};
 `;
 
-export const ColumnWrapper = styled.tr`
+export const LineWrapper = styled.tr`
+
 `;

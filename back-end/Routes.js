@@ -9,6 +9,8 @@ rota.get('/createstocktable',StockControll.CreateTables);
 
 rota.get('/all',StockControll.SelectAll);
 
+rota.get('/searchbar',StockControll.SearchBarGet)
+
 rota.post("/userverification",Verifier.Verification);
 
 rota.post("/newuser",Verifier.NewUser);
@@ -16,5 +18,8 @@ rota.post("/newuser",Verifier.NewUser);
 rota.post('/newproduct',StockControll.NewProduct);
 
 rota.put('/updateProduct',StockControll.UpdateProduct);
+
+rota.delete('/deleteProducts',StockControll.DeleteProduct);
+
 
 module.exports = rota;
