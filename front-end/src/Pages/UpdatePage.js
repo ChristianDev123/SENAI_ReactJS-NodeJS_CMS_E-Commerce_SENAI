@@ -27,16 +27,6 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
-    
-    // {
-    //     nameProduct:nomeProduto,
-    //     currentCodeProduct:atualCodigoProduto,
-    //     newCodeProduct:novoCodigoProduto,
-    //     descProduct:description,
-    //     qtdProduct:qtdProduto,
-    //     sizeProduct:tamanhoProd,
-    //     unitValue:valor
-    // } 
 
     async function updateAnProduct(event){
         event.preventDefault()
