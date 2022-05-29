@@ -20,6 +20,10 @@ const stocks = db.define('Stocks',{
     unitValue:{
         type:Sequelize.DECIMAL(8,2),
         allowNull:false
+    },
+    id_product:{
+        type:Sequelize.INTEGER,
+        allowNull:false
     }
 });
 

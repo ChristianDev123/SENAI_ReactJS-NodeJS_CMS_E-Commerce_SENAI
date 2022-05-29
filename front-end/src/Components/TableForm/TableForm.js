@@ -4,11 +4,13 @@ import { ColumnBody, ColumnHeader, LineWrapper, Table, TableBody, TableHeader, W
 export default function TableForm({update}){
     const [existSize,setExistSize] = useState([]);
     
-    useEffect(()=>{
+    useEffect(()=>UpdateTable(),[update]);
+
+    function UpdateTable(){
         fetch('http://localhost:3001/all')
         .then((response)=>response.json())
         .then((json)=>setExistSize(json))
-    },[update]);
+    }
 
     return(
         <WrapperTable>

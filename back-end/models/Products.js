@@ -15,14 +15,11 @@ const products = db.define('Products',{
     },
     code:{
         type: Sequelize.STRING,
+        unique:true,
         allowNull: false
     },
     description:{
         type:Sequelize.TEXT,
-        allowNull:false
-    },
-    id_stock:{
-        type:Sequelize.INTEGER,
         allowNull:false
     }
 });

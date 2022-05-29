@@ -11,8 +11,8 @@ const SearchGet = require('../database/getSearcher');
 class StockControll {
     static async CreateTables(req,res){
         try{
-            stocks.hasMany(products,{foreignKey:'id_stock'});
-            products.belongsTo(stocks,{foreignKey:'id_stock'});
+            products.hasMany(stocks,{foreignKey:'id_product'});
+            stocks.belongsTo(products,{foreignKey:'id_product'});
             const result = await db.sync({force:true});
             res.status(200).send('<h2>Tabelas "Products" e "Stocks" foram criadas com êxito!<h2>');
         }catch(err){
@@ -38,8 +38,8 @@ class StockControll {
     }
     
     static async DeleteProduct(req,res){
-        const arrDelete = req.body.arrToDelete 
-        DeleteProducts(arrDelete,res);
+        const index = req.params.id
+        DeleteProducts(index,res)
     }
 
     static async SearchBarGet(req,res){

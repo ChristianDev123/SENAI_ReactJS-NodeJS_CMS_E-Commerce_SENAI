@@ -8,7 +8,6 @@ export const Global = createGlobalStyle`
     }
     html,body,#root{
         background-color:${(props)=>props.theme.colors.background};
-        width:100vw;
         height:100vh;
     }
     :root{

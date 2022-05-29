@@ -4,6 +4,18 @@ export const WrapperTable = styled.div`
     padding:10px;
     border:1px solid ${(props)=>props.theme.colors.text};
     border-radius:10px;
+    max-height:200px;
+    overflow-y: scroll;
+    ::-webkit-scrollbar{
+        width:4px;
+    }
+    ::-webkit-scrollbar-track{
+        background:rgba(0,0,0,0.5);
+    }
+    ::-webkit-scrollbar-thumb{
+        background:#000;
+        border-radius: 5px;
+    }
 `;
 
 export const Table = styled.table`

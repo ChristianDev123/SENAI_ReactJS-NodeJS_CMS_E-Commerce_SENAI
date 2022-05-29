@@ -25,6 +25,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
+    const [resp,setResp] = useState(false);
 
     useEffect(()=>{
         if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
@@ -39,18 +40,19 @@ export default function PostManagementPage({changeTheme,currentTheme}){
             sizeProduct:tamanhoProd,
             unitValue:Number(valor),
             descProduct:description
-        } 
-        if(Validation(obj)){
+        }
+
+        if(await Validation(obj)){
            axios.post('http://localhost:3001/newProduct',obj)
            .then((response)=>setConfirmation(response))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
-
+        
         setNomeProduto('');
         setCodigoProduto('');
         setQtdProduto('');
-        setTamanhoProd('');
         setValor('');
+        setDescription('');
     }
     
     async function Validation(obj) {
@@ -93,7 +95,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         <>
             <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
             <main>
-                <TitleVerb text="Post New Product in Database" colorText="#3385ff"/>
+                <TitleVerb text="Post New Product in Database" colorText="#3385FF"/>
                 <Form onSubmit={(event)=>createNewProduct(event)}>
                     <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto} name="nameProduct"/>
                     <InputTextBox label="Codigo do Produto:" state={codigoProduto} changeState={setCodigoProduto} name="codeProduct"/>
@@ -143,7 +145,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     padding:2%;
-`
+`;
 
 const WrapperLastLine = styled.div`
     display:flex;
@@ -158,7 +160,7 @@ const WrapperLastLine = styled.div`
         flex-direction: row;
         align-items: flex-end;
     }
-`
+`;
 
 const BottomSide = styled.div`
     margin-top:20px;

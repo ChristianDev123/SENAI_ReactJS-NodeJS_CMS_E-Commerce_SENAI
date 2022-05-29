@@ -14,7 +14,7 @@ async function modifyProduct(data){
             size:data.sizeProduct,
             quantity:data.qtdProduct,
             unitValue:data.unitValue,
-        },{where:{id_Product:findIdProduct.idProduct}});
+        },{where:{id_product:findIdProduct.idProduct}});
     }catch(err){
         console.log(err);
     }

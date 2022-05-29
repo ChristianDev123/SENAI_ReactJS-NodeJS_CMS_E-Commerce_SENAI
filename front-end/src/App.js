@@ -23,7 +23,6 @@ export default function App(){
         <Route path="/updatepage" element={<UpdateManagementPage changeTheme={setIsDark} currentTheme={isDark}/>} />
         <Route path="/viewpage" element={<ViewPage changeTheme={setIsDark} currentTheme={isDark}/>} />
         <Route path="/removepage" element={<DeletePage changeTheme={setIsDark} currentTheme={isDark}/>} />
-        {/* <Route element={} /> */}
       </Routes>
     </ThemeProvider>
     </>

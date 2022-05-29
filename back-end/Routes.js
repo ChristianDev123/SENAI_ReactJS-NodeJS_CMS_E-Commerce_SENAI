@@ -19,7 +19,7 @@ rota.post('/newproduct',StockControll.NewProduct);
 
 rota.put('/updateProduct',StockControll.UpdateProduct);
 
-rota.delete('/deleteProducts',StockControll.DeleteProduct);
+rota.delete('/deleteProducts/:id',StockControll.DeleteProduct);
 
 
 module.exports = rota;

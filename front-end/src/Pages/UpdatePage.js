@@ -13,6 +13,7 @@ import SelectImageBox from "../Components/SelectImageBox/SelectImageBox";
 import Navbar from "../Components/NavBar/Navbar";
 import axios from "axios";
 import * as yup from 'yup';
+import ReactLoading from 'react-loading';
 
 export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
@@ -21,15 +22,18 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [qtdProduto,setQtdProduto] = useState('');
     const [tamanhoProd,setTamanhoProd] = useState('G');    
     const [valor,setValor] = useState('');
-    const [existSize,setExistSize] = useState([
-        {size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}
-    ]);
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
+    
+    
+    useEffect(()=>{
+        if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
+    },[confirmation])
 
     async function updateAnProduct(event){
         event.preventDefault()
+
         const obj = {
             nameProduct:nomeProduto,
             currentCodeProduct:atualCodigoProduto,
@@ -38,19 +42,20 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
             sizeProduct:tamanhoProd,
             unitValue:Number(valor),
             descProduct:description
-        } 
-        if(Validation(obj)){
+        }
+        
+        if(await Validation(obj)){
            axios.put('http://localhost:3001/updateProduct',obj)
            .then((response)=>setConfirmation(response))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
+        
         setNomeProduto('');
         setAtualCodigoProduto('');
         setNovoCodigoProduto('');
         setQtdProduto('');
-        setTamanhoProd('');
         setValor('');
-        setExistSize([{size:'G',qtd:"100",product:'JumpMan AIJ1 moletom'}]);
+        setDescription("");
     }
     
     async function Validation(obj) {
@@ -99,7 +104,7 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
             <main>
                 <TitleVerb text="Update an Existent Product" colorText="#0000ff"/>
                 <Form onSubmit={(event)=>updateAnProduct(event)}>
-                    <InputTextBox label="Nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
+                    <InputTextBox label="Novo nome do Produto:" state={nomeProduto} changeState={setNomeProduto}/>
                     <CodeLineWrapper>
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
                             <Col>
@@ -128,7 +133,7 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
                                 </Row>
                             </Col>
                             <Col md={6}>
-                                <TableForm contents={existSize}/>
+                                <TableForm update={confirmation}/>
                             </Col>
                         </Row>
                         <WrapperLastLine>
@@ -139,6 +144,9 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
                 </Form>
                 <Situation style={{color:'green'}}>{confirmation.data}</Situation>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
+                <WrapperLoading>
+                    {confirmation && <ReactLoading type="spin" color="#D71709" height="50px" width="50px"/>}
+                </WrapperLoading>
                 <SidebarWrapper>
                     <Navbar/>
                 </SidebarWrapper>
@@ -154,7 +162,7 @@ const Form = styled.form`
     flex-direction: column;
     justify-content: center;
     padding:2%;
-`
+`;
 
 const WrapperLastLine = styled.div`
     display:flex;
@@ -169,7 +177,7 @@ const WrapperLastLine = styled.div`
         flex-direction: row;
         align-items: flex-end;
     }
-`
+`;
 
 const BottomSide = styled.div`
     margin-top:20px;
@@ -202,4 +210,11 @@ const Situation = styled.p`
     @media screen and (min-width: 370px) {
         font-size: 22px;
     }
+`;
+
+const WrapperLoading = styled.div`
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 `;

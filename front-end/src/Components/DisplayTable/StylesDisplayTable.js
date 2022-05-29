@@ -60,6 +60,7 @@ export const Table = styled.div`
 
 export const HeaderTable = styled.div`
     display: flex;
+    justify-content: space-around;
 `;
 
 export const BodyTable = styled.div`
@@ -90,11 +91,11 @@ export const WrapperButton = styled.div`
 export const LineTable = styled.div`
     display:flex;
     justify-content: space-around;
-    width:100%;
 `;
 
 export const ColumnHeader = styled.div`
-
+    display: flex;
+    align-items:center; 
 `;
 
 export const ColumnBody = styled.div`
@@ -102,24 +103,49 @@ export const ColumnBody = styled.div`
 `;
 
 export const Text = styled.p`
-    padding:0 10px;
     text-align: center;
     font-size: 11px;
+    width:5ch;
     @media screen and (min-width:410px){
         font-size: 13px;
+    }
+    @media screen and (min-width: 760px){
+        font-size:15px;
+    }
+    @media screen and (min-width: 900px){
+        width:10ch;
+    }
+    @media screen and (min-width:1000px){
+        width:15ch;
+    }
+    @media screen and (min-width:1100px){
+        width:20ch;
     }
 `;
 
 export const TextHeader = styled.p`
     font-weight:bold;
     text-align: center;
-    padding:0 4px;
     font-size: 8px;
+    width:5ch;
+
     @media screen and (min-width: 350px) {
         font-size:11px;
     }
     @media screen and (min-width:410px){
         font-size: 13px;
+    }
+    @media screen and (min-width: 760px){
+        font-size:15px;
+    }
+    @media screen and (min-width: 900px){
+        width:10ch;
+    }
+    @media screen and (min-width:1000px){
+        width:15ch;
+    }
+    @media screen and (min-width:1100px){
+        width:20ch;
     }
 `;
 
@@ -166,4 +192,8 @@ export const HeaderWrapper = styled.div`
     display:flex;
     justify-content: space-around;
     width:100%;
+`;
+
+export const InputCheck = styled.input`
+    z-index: 3;
 `;

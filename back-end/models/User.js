@@ -18,7 +18,8 @@ const user = db.define('Users',{
     },
     matricula:{
         type:sequelize.STRING,
-        allowNull:false
+        allowNull:false,
+        unique:true
     }
 });
 
