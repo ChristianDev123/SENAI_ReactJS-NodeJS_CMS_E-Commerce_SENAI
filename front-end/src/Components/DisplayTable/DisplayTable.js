@@ -9,10 +9,8 @@ export default function DisplayTable({deletePage=false}){
     const [search,setSearch] = useState('');
 
     function DeleteProducts(indexProd){
-        console.log('Foi acionado id:', indexProd)
         axios.delete(`http://localhost:3001/deleteProducts/${indexProd}`)
         .then((response)=>{
-            console.log(response)
             UpdatePage();
         })
         .catch((err)=>console.log("o erro foi" + err))
@@ -75,7 +73,6 @@ export default function DisplayTable({deletePage=false}){
                         <LineWrapper>
                             {content.map((product, index)=>{
                                 const lastUpdate = new Date(product.updatedAt)
-                                console.log(product)
                                 return (
                                     <LineTable key={index}>
                                         <Text>{product.name}</Text>

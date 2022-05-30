@@ -1,5 +1,3 @@
-const sequelize = require('sequelize');
-const Table = require('../database/Create_Table');
 const new_User = require('../database/Create_User');
 const user = require('../models/User');
 
@@ -29,14 +27,8 @@ class Verifications {
             response = false;
             message = 'Usuário não encontrado!'
         }
-
-        console.log(message)
+        
         res.status(status).send({ user: response })
-    }
-    
-    static async NewTable(req, res) {
-        Table();
-        res.status(200).send({ mensagem: "Tabela 'User' criada com sucesso!" })
     }
     
     static async NewUser(req,res) {

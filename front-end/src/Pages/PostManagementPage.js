@@ -19,13 +19,13 @@ import ReactLoading from 'react-loading';
 export default function PostManagementPage({changeTheme,currentTheme}){
     const [nomeProduto,setNomeProduto] = useState('');
     const [codigoProduto,setCodigoProduto] = useState('');
+    const [image, setImage] = useState();
     const [qtdProduto,setQtdProduto] = useState('');
     const [tamanhoProd,setTamanhoProd] = useState('G');    
     const [valor,setValor] = useState('');
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
-    const [resp,setResp] = useState(false);
 
     useEffect(()=>{
         if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
@@ -33,6 +33,11 @@ export default function PostManagementPage({changeTheme,currentTheme}){
 
     async function createNewProduct(event){
         event.preventDefault()
+        
+        const formData = new FormData();
+        formData.append("image",image);
+        const headers = {headers: {"Content-Type": "application/json"}};
+        
         const obj = {
             nameProduct:nomeProduto,
             codeProduct:codigoProduto,
@@ -43,8 +48,8 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         }
 
         if(await Validation(obj)){
-           axios.post('http://localhost:3001/newProduct',obj)
-           .then((response)=>setConfirmation(response))
+           axios.post('http://localhost:3001/newProduct', obj, headers)
+           .then(()=>APIImage(formData))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
         
@@ -55,6 +60,15 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         setDescription('');
     }
     
+    function APIImage(formData){
+        axios
+        .post("http://localhost:3001/Uploadimage", formData)
+        .then((response)=>{setConfirmation(response)})
+        .catch((err) => {
+            console.log("o erro foi" + err);
+        });
+    }
+
     async function Validation(obj) {
         let schema = yup.object().shape({
             descProduct:
@@ -104,7 +118,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
                             <Col md={6}>
                                 <Row className="gap-4 gap-md-0" xs={1} md={2}>
                                     <Col>
-                                        <SelectImageBox idInput="imageSelectPost" label="Imagem do Produto:"/>
+                                        <SelectImageBox idInput="imageSelectPost" label="Imagem do Produto:" state={image} changeState={setImage}/>
                                     </Col>
                                     <Col>
                                         <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} name="qtdProduct"/>
