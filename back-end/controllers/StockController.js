@@ -14,7 +14,7 @@ class StockControll {
     
     static async CreateTables(req,res){
         try{
-            
+            console.log("chegou aqui")
             products.hasMany(stocks,{foreignKey:'id_product'});
             stocks.belongsTo(products,{foreignKey:'id_product'});
             

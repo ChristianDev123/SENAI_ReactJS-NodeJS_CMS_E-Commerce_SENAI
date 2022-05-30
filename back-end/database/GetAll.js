@@ -12,6 +12,7 @@ async function GetAll(result){
     dbM.query(query,(error,response)=>{
         if(error) result.status(500).send("Falha ao coletar os dados");
         result.status(200).json(response.rows);
+        dbM.end();
     })
 }
 

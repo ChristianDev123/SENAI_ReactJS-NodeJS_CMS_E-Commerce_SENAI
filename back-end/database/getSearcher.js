@@ -15,6 +15,7 @@ async function Get(request,result) {
     if(error) throw error;
     if(response.length === 0) result.status(500).send('Nenhum dado encontrado');
     else result.status(200).json(response);
+    dbM.end();
   });
 }
 

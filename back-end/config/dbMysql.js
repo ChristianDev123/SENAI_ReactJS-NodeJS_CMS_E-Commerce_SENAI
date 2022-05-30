@@ -7,6 +7,4 @@ const client = new Client({
 
 const dbPostgres = client.connect();
 
-console.log(process.env.DATABASE_URL);
-
 module.exports = dbPostgres;
