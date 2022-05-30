@@ -5,5 +5,5 @@ const connectionDB = process.env.DATABASE_URL;
         ssl:{rejectUnauthorized: false},
         dialect:"postgres"
     });
-    console.log(conectionDB)
+    console.log(connectionDB)
 module.exports = sequelize;
