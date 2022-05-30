@@ -1,4 +1,3 @@
-const sequelize = require('sequelize');
 const table = require('../models/User');
 
 const new_User = async(dados)=>{

@@ -1,10 +1,7 @@
-const mysql = require('mysql2');
+const {Client} = require('pg');
 
-const dbMysql = mysql.createConnection({
-    host:'localhost',
-    user:'root',
-    database:'cms_crud'
-});
+const client = new Client();
+const dbPostgres = client.connect(process.env.DATABASE_URL);
 
 
-module.exports = dbMysql;
+module.exports = dbPostgres;
