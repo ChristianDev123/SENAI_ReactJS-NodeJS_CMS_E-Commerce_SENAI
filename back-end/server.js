@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const porta = 3001;
+const porta = process.env.PORT || 3001;
 const rotas = require("./Routes");
 const cors = require("cors");
 
