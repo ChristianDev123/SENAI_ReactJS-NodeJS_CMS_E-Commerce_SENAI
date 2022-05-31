@@ -1,11 +1,14 @@
 const {Pool} = require('pg');
 
-const Client = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl:{rejectUnauthorized: false}
-});
+
 
 async function Get(request,result) {
+  
+  const Client = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl:{rejectUnauthorized: false}
+  });
+  
   const query = `
     SELECT P."name", P."code", P."description",P."idProduct",P."updatedAt",
     S."size", S."quantity", S."unitValue", 
@@ -25,6 +28,7 @@ async function Get(request,result) {
     else result.status(200).json(response);
     Client.end();
   });
+  
 }
 
 module.exports = Get;
