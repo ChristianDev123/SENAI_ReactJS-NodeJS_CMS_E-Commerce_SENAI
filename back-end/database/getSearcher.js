@@ -2,13 +2,17 @@ const Client = require("../config/dbMysql");
 
 async function Get(request,result) {
   const query = `
-    SELECT P.name, P.code, P.description,P.idProduct,P.updatedAt,
-    S.size, S.quantity, S.unitValue
-    FROM PRODUCTS AS P
-    INNER JOIN STOCKS AS S 
-    ON P.IDPRODUCT = S.ID_PRODUCT 
+    SELECT P."name", P."code", P."description",P."idProduct",P."updatedAt",
+    S."size", S."quantity", S."unitValue", 
+    I."nameImage"
+    FROM "Products" AS P
+    INNER JOIN "Stocks" AS S 
+    ON P."idProduct" = S."id_product"
+    INNER JOIN "images" AS I
+    ON P."idProduct" = I."id_product"
     WHERE name LIKE'${request.name}%' 
-    OR code LIKE '${request.code}%'`;
+    OR code LIKE '${request.code}%'
+  `;
   
   Client.connect();
 
