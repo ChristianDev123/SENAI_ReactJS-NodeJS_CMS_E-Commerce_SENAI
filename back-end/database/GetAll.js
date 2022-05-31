@@ -1,4 +1,4 @@
-const dbM = require('../config/dbMysql');
+const Client = require('../config/dbMysql');
 
 
 async function GetAll(result){
@@ -8,12 +8,13 @@ async function GetAll(result){
         ON P.IDPRODUCT = S.ID_PRODUCT
         LEFT JOIN IMAGES AS I
         ON P.IDPRODUCT = I.ID_PRODUCT
-        `;    
-    dbM.query(query,(error,response)=>{
+        `;
+    Client.connect();
+    Client.query(query,(error,response)=>{
         if(error) result.status(500).send("Falha ao coletar os dados");
         console.log(response);
         // result.status(200).json(response.rows);
-        dbM.end();
+        Client.end();
     })
 }
 

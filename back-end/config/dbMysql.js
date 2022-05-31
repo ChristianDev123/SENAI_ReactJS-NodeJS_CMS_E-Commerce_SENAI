@@ -5,6 +5,4 @@ const client = new Client({
     ssl:{rejectUnauthorized: false}
 });
 
-const dbPostgres = client.connect();
-
-module.exports = dbPostgres;
+module.exports = client;
