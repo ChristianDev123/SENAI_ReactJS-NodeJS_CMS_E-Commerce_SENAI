@@ -1,4 +1,9 @@
-const Client = require("../config/dbMysql");
+const {Pool} = require('pg');
+
+const Client = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl:{rejectUnauthorized: false}
+});
 
 async function Get(request,result) {
   const query = `
