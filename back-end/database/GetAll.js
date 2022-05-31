@@ -11,8 +11,8 @@ async function GetAll(result){
         `;
     Client.connect();
     Client.query(query,(error,response)=>{
-        if(error) result.status(500).send("Falha ao coletar os dados");
-        console.log(response);
+        // if(error) result.status(500).send("Falha ao coletar os dados");
+        console.log(error,response);
         // result.status(200).json(response.rows);
         Client.end();
     })

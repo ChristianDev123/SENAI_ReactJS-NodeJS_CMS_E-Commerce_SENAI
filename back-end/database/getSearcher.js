@@ -1,5 +1,4 @@
-const dbM = require("../config/dbMysql");
-const products = require("../models/Products");
+const Client = require("../config/dbMysql");
 
 async function Get(request,result) {
   const query = `
@@ -10,12 +9,14 @@ async function Get(request,result) {
     ON P.IDPRODUCT = S.ID_PRODUCT 
     WHERE name LIKE'${request.name}%' 
     OR code LIKE '${request.code}%'`;
+  
+  Client.connect();
 
-  dbM.query(query, (error, response) => {
+  Client.query(query, (error, response) => {
     if(error) throw error;
     if(response.length === 0) result.status(500).send('Nenhum dado encontrado');
     else result.status(200).json(response);
-    dbM.end();
+    Client.end();
   });
 }
 

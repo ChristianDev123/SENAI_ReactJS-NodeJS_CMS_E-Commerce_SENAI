@@ -1,4 +1,3 @@
-const Sequelize = require('sequelize');
 const stockTable = require('../models/Stocks');
 const productTable = require('../models/Products');
 
