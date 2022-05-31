@@ -26,7 +26,6 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
     
-    
     useEffect(()=>{
         if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
     },[confirmation])
@@ -45,7 +44,7 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
         }
         
         if(await Validation(obj)){
-           axios.put('http://localhost:3001/updateProduct',obj)
+           axios.put('https://crud-node-senai.herokuapp.com/updateProduct',obj)
            .then((response)=>setConfirmation(response))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }

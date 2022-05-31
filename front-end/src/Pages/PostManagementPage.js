@@ -48,7 +48,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
         }
 
         if(await Validation(obj)){
-           axios.post('http://localhost:3001/newProduct', obj, headers)
+           axios.post('https://crud-node-senai.herokuapp.com/newProduct', obj, headers)
            .then(()=>APIImage(formData))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
@@ -62,7 +62,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
     
     function APIImage(formData){
         axios
-        .post("http://localhost:3001/Uploadimage", formData)
+        .post("https://crud-node-senai.herokuapp.com/Uploadimage", formData)
         .then((response)=>{setConfirmation(response)})
         .catch((err) => {
             console.log("o erro foi" + err);

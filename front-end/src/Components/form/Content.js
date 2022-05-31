@@ -14,7 +14,7 @@ export default function MainForm() {
     async function VerifieUser(e){
         e.preventDefault();
         if (!await Validation()) return;
-        Axios.post("http://localhost:3001/userverification", user)
+        Axios.post("https://crud-node-senai.herokuapp.com/userverification", user)
         .then(({data})=>{
             set_status({type:'sucess'})
             set_ValidateUser(data.user)

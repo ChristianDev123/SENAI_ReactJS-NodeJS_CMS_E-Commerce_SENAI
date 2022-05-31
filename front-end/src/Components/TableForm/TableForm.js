@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { ColumnBody, ColumnHeader, LineWrapper, Table, TableBody, TableHeader, WrapperTable } from "./StyleTableForm";
 
@@ -7,9 +8,8 @@ export default function TableForm({update}){
     useEffect(()=>UpdateTable(),[update]);
 
     function UpdateTable(){
-        fetch('http://localhost:3001/all')
-        .then((response)=>response.json())
-        .then((json)=>setExistSize(json))
+        axios.get('https://crud-node-senai.herokuapp.com/all')
+        .then(({data})=>setExistSize(data));
     }
 
     return(

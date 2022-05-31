@@ -9,7 +9,7 @@ export default function DisplayTable({deletePage=false}){
     const [search,setSearch] = useState('');
 
     function DeleteProducts(indexProd){
-        axios.delete(`http://localhost:3001/deleteProducts/${indexProd}`)
+        axios.delete(`https://crud-node-senai.herokuapp.com/deleteProducts/${indexProd}`)
         .then((response)=>{
             UpdatePage();
         })
@@ -24,8 +24,8 @@ export default function DisplayTable({deletePage=false}){
     }
 
     function UpdatePage(){
-        axios.get(`http://localhost:3001/searchbar?name=${search}&code=${search}`)
-        .then(({data})=>setContent(data));
+        axios.get(`https://crud-node-senai.herokuapp.com/searchbar?name=${search}&code=${search}`)
+        .then(({data})=>setContent(data.rows));
     }
     
     useEffect(()=>{
