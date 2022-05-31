@@ -1,8 +1,11 @@
 const express = require("express");
+const path = require("path");
 const app = express();
 const porta = process.env.PORT || 3001;
 const rotas = require("./Routes");
 const cors = require("cors");
+
+app.use("/files",express.static(path.resolve(__dirname,"public")));
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
