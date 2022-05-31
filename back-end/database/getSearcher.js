@@ -13,8 +13,6 @@ async function Get(request,result) {
     WHERE name LIKE'${request.name}%' 
     OR code LIKE '${request.code}%'
   `;
-  
-  Client.connect();
 
   Client.query(query, (error, response) => {
     if(error) throw error;

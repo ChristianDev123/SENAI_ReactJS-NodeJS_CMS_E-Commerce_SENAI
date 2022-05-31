@@ -9,9 +9,8 @@ async function GetAll(result){
         LEFT JOIN "images" AS i
         ON p."idProduct" = i."id_product"    
     `;
-    Client.connect();
     Client.query(query,(error,response)=>{
-        // if(error) result.status(500).send("Falha ao coletar os dados");
+        if(error) result.status(500).send("Falha ao coletar os dados");
         result.status(200).json(response.rows);
         Client.end();
     })
