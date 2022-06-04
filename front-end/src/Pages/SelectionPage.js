@@ -8,7 +8,7 @@ import BigButton from '../Components/BigButton/BigButton';
 import Header from '../Components/Header/Header';
 import { Link } from 'react-router-dom';
 
-export default function SelectionPage({changeTheme,currentTheme }){
+export default function SelectionPage(){
     
     const [buttons,setButtons] = useState([
         {color:'#0000ff',image:Update, textverb:'Update an register',to:'/updatepage'},
@@ -19,7 +19,7 @@ export default function SelectionPage({changeTheme,currentTheme }){
 
     return(
         <>
-            <Header changeTheme={changeTheme} currentTheme={currentTheme} title="Choose an action"/>
+            <Header title="Choose an action"/>
             <main>
                 {buttons.map((verbs,index)=>{
                     return (

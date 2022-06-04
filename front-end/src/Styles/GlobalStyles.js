@@ -7,7 +7,6 @@ export const Global = createGlobalStyle`
         box-sizing: border-box;
     }
     html,body,#root{
-        background-color:${(props)=>props.theme.colors.background};
         width:100vw;
         height:100vh;
     }

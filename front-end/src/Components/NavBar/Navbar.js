@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
 import { Button, Wrapper, PostIcon, RemoveIcon, UpdateIcon, ViewIcon } from "./StyleNavBar";
 import {Link} from 'react-router-dom'
-export default function Navbar({currentPage=""}){
+export default function Navbar(){
     return(
         <Wrapper>
             <Link to="/updatepage">

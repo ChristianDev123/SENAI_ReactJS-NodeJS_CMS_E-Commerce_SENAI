@@ -10,14 +10,13 @@ export const Wrapper = styled.section`
     margin:auto;
     display:flex;
     justify-content: center;
-    background:${(props)=>props.theme.colors.backgroundNavbar};
+    background:var(--default_color-form);
     border-radius:15px 15px 0 0;
 `
 
 export const ViewIcon = styled(Eye)`
     width:48px;
     height:48px;
-    color:${(props)=>props.theme.colors.colorIcons};
     &:hover{
         color:#5CD65C;
         width:50px;
@@ -30,7 +29,6 @@ export const ViewIcon = styled(Eye)`
 export const UpdateIcon = styled(Autorenew)`
     width:48px;
     height:48px;
-    color:${(props)=>props.theme.colors.colorIcons};
     &:hover{
         color:#0000ff;
         width:50px;
@@ -43,7 +41,6 @@ export const UpdateIcon = styled(Autorenew)`
 export const RemoveIcon = styled(RemoveCircleOutline)`
     width:48px;
     height:48px;
-    color:${(props)=>props.theme.colors.colorIcons};
     &:hover{
         color:#B30000;
         width:50px;
@@ -56,7 +53,6 @@ export const RemoveIcon = styled(RemoveCircleOutline)`
 export const PostIcon = styled(PlusCircle)`
     width:48px;
     height:48px;
-    color:${(props)=>props.theme.colors.colorIcons};
     &:hover{
         color:#3385FF;
         width:50px;

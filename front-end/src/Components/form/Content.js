@@ -1,14 +1,16 @@
-import { ContainerForm, Title, Form, Input, Label, SubText, Button, Situation } from './styledContent'
+import { ContainerForm, Title, Form, Input, Label, Button, Situation } from './styledContent'
 import Axios from 'axios'
 import { useEffect, useState } from 'react';
 import * as yup from 'yup'
 import ReactLoading from 'react-loading';
 import { useNavigate } from 'react-router-dom';
+import { Switch } from '@mui/material';
 
 export default function MainForm() {
     const [user, set_user] = useState({ user: "", pass: "", mat: "" });
     const [status, set_status] = useState({ type: '', message: '' })
     const [validateUser, set_ValidateUser] = useState(null);
+    const [showPass,setShowPass] = useState(false);
     const navigate = useNavigate();
 
     async function VerifieUser(e){
@@ -66,14 +68,16 @@ export default function MainForm() {
                         return{...VA,user:e.target.value};
                     })} />
                     <Label htmlFor='pass'>Senha:</Label>
-                    <Input name="pass" value={user.pass} onChange={(e)=>set_user((VA)=>{
-                        return{...VA,pass:e.target.value};
-                    })} />
+                    <div>
+                        <Input type={showPass?"text":"password"} name="pass" value={user.pass} onChange={(e)=>set_user((VA)=>{
+                            return{...VA,pass:e.target.value};
+                        })} />
+                        <Switch onClick={()=>setShowPass(!showPass)}/> Mostrar Senha ?
+                    </div>
                     <Label htmlFor='mat'>Matrícula:</Label>
                     <Input name="mat" value={user.mat} onChange={(e)=>set_user((VA)=>{
                         return{...VA,mat:e.target.value};
                     })} />
-                    <SubText>Esqueceu sua senha?</SubText>
                 </Form>
                 <Button onClick={(event)=>VerifieUser(event)}>Entrar</Button>
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}

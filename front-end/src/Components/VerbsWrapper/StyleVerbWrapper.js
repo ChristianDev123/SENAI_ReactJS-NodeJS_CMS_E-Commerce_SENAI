@@ -4,7 +4,7 @@ export const TextVerb = styled.h3`
     display:flex;
     align-items:center;
     height:100%;
-    color:${(props)=>props.theme.colors.text};
+    color:#000;
     & .left{
         width:100%;
         text-align: right;
@@ -17,5 +17,5 @@ export const TextVerb = styled.h3`
 
 export const SpanVerb = styled.span`
     padding:0 5px;
-    color:${(props)=>props.theme.colors.specialText};
+    color:var(--primary-color);
 `;

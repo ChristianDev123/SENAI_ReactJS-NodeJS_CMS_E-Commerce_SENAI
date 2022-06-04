@@ -27,7 +27,7 @@ class Verifications {
             response = true;
             message = 'Usuário encontrado!'
         }else{
-            status = 404;
+            status = 500;
             response = false;
             message = 'Usuário não encontrado!'
         }

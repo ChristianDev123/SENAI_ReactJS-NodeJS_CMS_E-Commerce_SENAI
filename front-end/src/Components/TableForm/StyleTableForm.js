@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const WrapperTable = styled.div`
     padding:10px;
-    border:1px solid ${(props)=>props.theme.colors.text};
+    border:1px solid #000;
     border-radius:10px;
     max-height:200px;
     overflow-y: scroll;
@@ -32,11 +32,11 @@ export const TableBody = styled.tbody`
 
 export const ColumnHeader = styled.th`
     padding:10px;
-    color:${(props)=>props.theme.colors.text};
+    color:#000;
 `;
 
 export const ColumnBody = styled.td`
-    color:${(props)=>props.theme.colors.text};
+    color:#000;
 `;
 
 export const LineWrapper = styled.tr`

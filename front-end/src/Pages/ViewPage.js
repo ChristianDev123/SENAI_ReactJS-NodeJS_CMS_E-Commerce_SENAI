@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import DisplayTable from "../Components/DisplayTable/DisplayTable";
 import TitleVerb from "../Components/TitleVerbs/TitleVerbs";
 
-export default function ViewPage({changeTheme, currentTheme}){
+export default function ViewPage(){
     return(
         <>
-            <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
+            <Header/>
             <TitleVerb text="View all Registers in Database" colorText="#5CD65C"/>
             <DisplayWrapper>
                 <DisplayTable/>

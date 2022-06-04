@@ -16,7 +16,7 @@ import axios from "axios";
 import ReactLoading from 'react-loading';
 
 
-export default function PostManagementPage({changeTheme,currentTheme}){
+export default function PostManagementPage(){
     const [nomeProduto,setNomeProduto] = useState('');
     const [codigoProduto,setCodigoProduto] = useState('');
     const [image, setImage] = useState();
@@ -26,7 +26,6 @@ export default function PostManagementPage({changeTheme,currentTheme}){
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
-
     useEffect(()=>{
         if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
     },[confirmation])
@@ -107,7 +106,7 @@ export default function PostManagementPage({changeTheme,currentTheme}){
 
     return(
         <>
-            <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
+            <Header/>
             <main>
                 <TitleVerb text="Post New Product in Database" colorText="#3385FF"/>
                 <Form onSubmit={(event)=>createNewProduct(event)}>

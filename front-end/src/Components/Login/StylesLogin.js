@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const WrapperSection = styled.section`
-    background-color:${(props)=>props.theme.colors.background};
+    background-color:var(--default-color-form);
     height:100vh;
     margin:auto;
     display: flex;

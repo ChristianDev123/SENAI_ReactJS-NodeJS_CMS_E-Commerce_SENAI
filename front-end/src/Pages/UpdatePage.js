@@ -15,7 +15,7 @@ import axios from "axios";
 import * as yup from 'yup';
 import ReactLoading from 'react-loading';
 
-export default function UpdateManagementPage({changeTheme,currentTheme}){
+export default function UpdateManagementPage(){
     const [nomeProduto,setNomeProduto] = useState('');
     const [atualCodigoProduto,setAtualCodigoProduto] = useState('');
     const [novoCodigoProduto,setNovoCodigoProduto] = useState('');
@@ -99,7 +99,7 @@ export default function UpdateManagementPage({changeTheme,currentTheme}){
 
     return(
         <>
-            <Header changeTheme={changeTheme} currentTheme={currentTheme}/>
+            <Header/>
             <main>
                 <TitleVerb text="Update an Existent Product" colorText="#0000ff"/>
                 <Form onSubmit={(event)=>updateAnProduct(event)}>

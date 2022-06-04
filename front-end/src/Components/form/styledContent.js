@@ -13,7 +13,7 @@ export const Title = styled.h1`
     font-weight: 600;
     letter-spacing: 0em;
     text-align:left;
-    color: ${(props)=>props.theme.colors.specialText};
+    color: var(--primary-color);
     font-style: italic;
     padding-bottom: 50px;
     @media screen and (max-width:350px) {
@@ -32,7 +32,7 @@ export const Label = styled.label`
     font-size: 16px;
     text-align: left;
     padding: 10px 10px 0 5px;
-    color:${(props)=>props.theme.colors.specialText};
+    color:var(--primary-color);
     @media screen and (max-width:350px) {
         font-size:14px;
     }
@@ -47,7 +47,7 @@ export const Input = styled.input`
     border:none;
     background: none;
     width: 100%;
-    border-bottom: 2px solid ${(props)=>props.theme.colors.text};
+    border-bottom: 2px solid #000;
     opacity:0.65;
     
     &:hover{
@@ -64,13 +64,12 @@ export const Button = styled.button`
     width: 230px;
     height: 60px;
     background: none;
-    border: 1px solid ${(props)=>props.theme.colors.text};
+    border: 1px solid #000;
     box-sizing: border-box;
     border-radius: 10px;
-    color: ${(props)=>props.theme.colors.text};
+    color: #000;
     font-size: 20px;
-    font-weight: 400;
-    
+    margin-top:100px;    
     &:hover{
         border:1px solid var(--primary-color);
         background:var(--primary-color);
@@ -90,7 +89,7 @@ export const SubText = styled.a`
     text-align: right;
     padding-top: 10px;
     text-decoration:none;
-    color: ${(props)=>props.theme.colors.text};
+    color: #000;
     :hover{
         text-decoration: none;
         cursor: pointer;

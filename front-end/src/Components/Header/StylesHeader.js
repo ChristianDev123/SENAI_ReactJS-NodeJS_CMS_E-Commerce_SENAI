@@ -8,5 +8,5 @@ export const ContainerAll = styled.section`
 `;
 
 export const Title = styled.h2`
-    color:${(props)=>props.theme.colors.specialText};
+    color:var(--primary-color);
 `;
