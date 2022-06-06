@@ -30,12 +30,6 @@ class StockControll {
         };
     }
 
-    static async UpdateProduct(req,res){
-        const objBody = req.body;
-        updateProject(objBody)
-        res.status(200).send('Modificação realizada com sucesso!')
-    }
-
     static async SelectAll(req,res){
         GetAllProducts(res);
     }

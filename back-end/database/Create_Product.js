@@ -8,13 +8,16 @@ async function newProduct(data,Image){
         code:data.codeProduct,
         description:data.descProduct
     });
+    
     const idProduct = resultProduct.idProduct;
+    
     const resultStocks = await StockTable.create({
         size:data.sizeProduct,
         quantity:data.qtdProduct,
         unitValue:data.unitValue,
         id_product:idProduct
     });
+    
     const resultImage = await ImageTable.create({
         pathImage: Image,
         nameImage: Image,
