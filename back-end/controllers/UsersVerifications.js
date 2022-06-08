@@ -14,7 +14,7 @@ class Verifications {
                 matricula: dados.mat
             }
         });
-        console.log(verifier.Users.senha)
+        console.log(verifier.Users)
         bcrypt.compare(dados.pass,verifier.Users.senha,(err,answer)=>{
             if(err) console.log(err);
             UserExists = answer
