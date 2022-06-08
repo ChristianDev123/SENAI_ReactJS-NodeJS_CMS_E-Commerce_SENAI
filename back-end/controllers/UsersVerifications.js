@@ -7,21 +7,20 @@ class Verifications {
     
     static async Verification(req, res) {
         const dados = req.body
-        const newPass = bcrypt.hashSync(dados.pass,salt);
+        let UserExists;
         const verifier = await user.findOne({
             where:{
                 usuario: dados.user,
-                senha: newPass,
                 matricula: dados.mat
             }
         });
-
-        const UserExists = verifier == null ? false : true;
-
+        bcrypt.compare(dados.pass,verifier.senha,(err,answer)=>{
+            if(err) console.log(err);
+            UserExists = answer
+        });
         let status;
         let response;
         let message;
-        
         if(UserExists){
             status = 200;
             response = true;
