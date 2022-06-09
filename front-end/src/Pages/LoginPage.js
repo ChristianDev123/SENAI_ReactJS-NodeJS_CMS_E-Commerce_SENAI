@@ -24,11 +24,10 @@ export default function Login() {
 }
 
 const WrapperSection = styled.section`
-    background-color:var(--default-color-form);
     height:100vh;
     margin:auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding:10px;
+    padding:50px;
 `

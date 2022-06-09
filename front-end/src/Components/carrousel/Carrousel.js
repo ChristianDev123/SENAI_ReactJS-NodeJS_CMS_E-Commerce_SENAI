@@ -14,12 +14,8 @@ export default function LeftMain(){
     ]);
     /* sempre usar imagens em modo retrato (3000,2000) */
     return(
-        <>
-            <Wrapper>
-                <CarrouselWrapper>
-                    <UncontrolledCarousel items={imagesCarousel}/>
-                </CarrouselWrapper>
-            </Wrapper>
-        </>
+        <CarrouselWrapper>
+            <UncontrolledCarousel items={imagesCarousel} />
+        </CarrouselWrapper>
     )
 }

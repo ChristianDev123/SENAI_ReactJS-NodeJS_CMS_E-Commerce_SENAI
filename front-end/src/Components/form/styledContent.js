@@ -6,6 +6,7 @@ export const ContainerForm = styled.div`
     align-items: center;
     justify-content: center;
     height:100%;
+    background-color:var(--default-color-form);
 `;
 
 export const Title = styled.h1`
@@ -25,6 +26,7 @@ export const Title = styled.h1`
 `;
 
 export const Form = styled.form`
+    width:100%;
 `;
 
 export const Label = styled.label`

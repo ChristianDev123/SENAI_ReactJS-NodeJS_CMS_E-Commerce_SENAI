@@ -9,6 +9,7 @@ export const Global = createGlobalStyle`
     html,body,#root{
         width:100vw;
         height:100vh;
+        background-color:var(--default-color-form);
     }
     :root{
         --primary-color:#D71709;
