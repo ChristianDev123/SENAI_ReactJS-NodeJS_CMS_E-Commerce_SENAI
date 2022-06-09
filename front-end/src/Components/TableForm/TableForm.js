@@ -9,7 +9,7 @@ export default function TableForm({update}){
 
     function UpdateTable(){
         axios.get('https://crud-node-senai.herokuapp.com/all')
-        .then(({data})=>setExistSize(data));
+        .then(({data})=>setExistSize(data.rows));
     }
 
     return(
