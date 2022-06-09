@@ -3,12 +3,20 @@ const ProductTable = require('../models/Products');
 const ImageTable = require("../models/Images");
 
 async function newProduct(data,Image){
-    const resultProduct = await ProductTable.create({
-        name:data.nameProduct,
-        code:data.codeProduct,
-        description:data.descProduct
-    });
-    
+    let resultProduct;
+    if(! await verifierProduct(data)){
+        resultProduct = await ProductTable.create({
+            name:data.nameProduct,
+            code:data.codeProduct,
+            description:data.descProduct
+        });
+    }else{
+        resultProduct = await ProductTable.findOne({where:{
+            name: data.nameProduct,
+            code: data.codeProduct
+        }});
+    }
+
     const idProduct = resultProduct.idProduct;
     
     const resultStocks = await StockTable.create({
@@ -24,5 +32,13 @@ async function newProduct(data,Image){
         id_product: idProduct
     });
 };
+
+async function verifierProduct(data){
+    const resultProduct = await ProductTable.findOne({where:{
+        name: data.nameProduct,
+        code: data.codeProduct
+    }});
+    return(resultProduct !== null?true:false)
+}
 
 module.exports = newProduct;

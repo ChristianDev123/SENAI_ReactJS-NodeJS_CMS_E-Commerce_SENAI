@@ -7,20 +7,20 @@ class Verifications {
     
     static async Verification(req, res) {
         const dados = req.body
-        let UserExists;
+        
         const verifier = await user.findOne({
             where:{
                 usuario: dados.user,
                 matricula: dados.mat
             }
         });
-        bcrypt.compare(dados.pass,verifier.senha,(err,answer)=>{
-            if(err) console.log(err);
-            UserExists = answer
-        });
+        
+        const UserExists = await bcrypt.compare(dados.pass,verifier.senha);
+
         let status;
         let response;
         let message;
+        
         if(UserExists){
             status = 200;
             response = true;
@@ -31,7 +31,7 @@ class Verifications {
             message = 'Usuário não encontrado!'
         }
         
-        res.status(status).send({ user: response })
+        res.status(status).json({ user: response, message:message })
     }
     
     static async NewUser(req,res) {

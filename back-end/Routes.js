@@ -23,22 +23,13 @@ rota.post("/newProduct", UpdateImg.single("image"), async(req, res) => {
     res.status(200).send({confirmation:true});
 });
 
-rota.put("/updateProduct",UpdateImg.single("image"),async(req, res)=>{
-    ObjBody = await req.body;
-    res.status(200).send({confirmation:true});
-});
+rota.put("/updateProduct",StockControll.UpdateProducts);
 
 rota.delete("/deleteProducts/:id", StockControll.DeleteProduct);
 
 rota.post("/uploadimage", UpdateImg.single("image"), async (req, res) => {
     const image = req.file.filename;
     newProduct(ObjBody,image);
-    res.status(200).send('Item registrado com sucesso!');
-});
-
-rota.post("/updateimage", UpdateImg.single("image"), async (req, res) => {
-    const image = req.file.filename;
-    modifyProduct(ObjBody,image);
     res.status(200).send('Item registrado com sucesso!');
 });
 

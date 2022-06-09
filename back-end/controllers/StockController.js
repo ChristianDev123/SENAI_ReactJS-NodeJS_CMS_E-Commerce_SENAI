@@ -2,7 +2,7 @@ const db = require('../config/db');
 const products = require('../models/Products');
 const stocks = require('../models/Stocks');
 const images = require("../models/Images");
-const updateProject = require('../database/Modify_Product');
+const updateProducts = require('../database/Modify_Product');
 const GetAllProducts = require('../database/GetAll');
 const DeleteProducts = require('../database/DeleteProduct')
 const SearchGet = require('../database/getSearcher');
@@ -57,6 +57,12 @@ class StockControll {
         })
     }
     
+    static async UpdateProducts(req,res){
+        const data = req.body;
+        const answer = await updateProducts(data);
+        res.status(answer?200:500).json({confirmation:answer});
+    }
+
 }
 
 module.exports = StockControll;

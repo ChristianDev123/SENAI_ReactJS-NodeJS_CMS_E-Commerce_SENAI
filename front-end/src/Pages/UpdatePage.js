@@ -45,7 +45,7 @@ export default function UpdateManagementPage(){
         
         if(await Validation(obj)){
            axios.put('https://crud-node-senai.herokuapp.com/updateProduct',obj)
-           .then((response)=>setConfirmation(response))
+           .then(({data})=>setConfirmation(data.confirmation))
            .catch(()=>setStatus({type:'error', message:'Erro ao conectar ao enviar informações à base de dados.'}))
         }
         
@@ -118,9 +118,6 @@ export default function UpdateManagementPage(){
                         <Row xs={1} md={2} className="gap-4 gap-md-0">
                             <Col md={6}>
                                 <Row className="gap-4 gap-md-0" xs={1} md={2}>
-                                    <Col>
-                                        <SelectImageBox idInput="ImageSelectUpdate" label="Imagem do Produto:"/>
-                                    </Col>
                                     <Col>
                                         <SizeBox label="Atual Quantidade em Estoque:" idInput="qtdEstoque" stateSize={tamanhoProd} changeStateSize={setTamanhoProd} stateQTD={qtdProduto} changeStateQTD={setQtdProduto} />
                                     </Col>

@@ -1,9 +1,11 @@
 const stockTable = require('../models/Stocks');
 const productTable = require('../models/Products');
-const imageTable = require("../models/Images");
 
-async function modifyProduct(data,image){
+async function modifyProduct(data){
+    let status = false;
     try{
+        let changeStock;
+
         const changeProduct = await productTable.update({
             name:data.nameProduct,
             code:data.newCodeProduct,
@@ -12,21 +14,29 @@ async function modifyProduct(data,image){
 
         const findIdProduct = await productTable.findOne({where:{code:data.newCodeProduct}});
         
-        const changeStock = await stockTable.update({
-            size:data.sizeProduct,
-            quantity:data.qtdProduct,
-            unitValue:data.unitValue,
-        },{where:{id_product:findIdProduct.idProduct}});
-        
-        const resultImage = await imageTable.update({
-            pathImage: image,
-            nameImage: image,
-        },{where:{id_product:findIdProduct.idProduct}});
-    
+        if(await verifierStock(findIdProduct.idProduct, data.sizeProduct)){
+            changeStock = await stockTable.update({
+                size:data.sizeProduct,
+                quantity:data.qtdProduct,
+                unitValue:data.unitValue,
+            },{where:{
+                id_product:findIdProduct.idProduct,
+                size:data.sizeProduct
+            }});
+            status = true;
+        }
     }catch(err){
         console.log(err);
     }
-    return true
+    return status;
 };
+
+async function verifierStock(foreignKey, size){
+    const resultStock = await stockTable.findOne({where:{
+        id_product:foreignKey,
+        size:size
+    }});
+    return(resultStock !== null?true:false);
+}
 
 module.exports = modifyProduct;

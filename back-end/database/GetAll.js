@@ -18,7 +18,7 @@ async function GetAll(result){
 
     Client.query(query,(error,response)=>{
         if(error) result.status(500).send("Falha ao coletar os dados");
-        result.status(200).json(response.rows);
+        result.status(200).json(response);
         Client.end();
     })
 
