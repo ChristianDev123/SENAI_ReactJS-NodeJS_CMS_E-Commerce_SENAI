@@ -27,6 +27,10 @@ export default function UpdateManagementPage(){
     const [confirmation,setConfirmation] = useState(false);
     
     useEffect(()=>{
+        document.querySelector(".titlePage").innerHTML = "Pagina de Atualização"
+     },[])
+
+    useEffect(()=>{
         if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
     },[confirmation])
 

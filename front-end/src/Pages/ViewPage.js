@@ -3,8 +3,14 @@ import Navbar from "../Components/NavBar/Navbar";
 import styled from 'styled-components';
 import DisplayTable from "../Components/DisplayTable/DisplayTable";
 import TitleVerb from "../Components/TitleVerbs/TitleVerbs";
+import { useEffect } from "react";
 
 export default function ViewPage(){
+    
+    useEffect(()=>{
+        document.querySelector(".titlePage").innerHTML = "Pagina de Visualização"
+    },[])
+
     return(
         <>
             <Header/>

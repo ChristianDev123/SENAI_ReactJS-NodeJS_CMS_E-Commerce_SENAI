@@ -26,6 +26,11 @@ export default function PostManagementPage(){
     const [description,setDescription ] = useState('');
     const [status,setStatus] = useState('');
     const [confirmation,setConfirmation] = useState(false);
+    
+    useEffect(()=>{
+        document.querySelector(".titlePage").innerHTML = "Inserção de Produtos"
+    },[])
+
     useEffect(()=>{
         if(confirmation) setTimeout(()=>(setConfirmation(false)),5000);
     },[confirmation])

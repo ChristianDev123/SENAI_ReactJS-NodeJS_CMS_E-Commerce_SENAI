@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import { Row, Col, } from 'reactstrap';
 import LeftMain from '../Components/carrousel/Carrousel';
 import MainForm from '../Components/form/Content';
 import styled from 'styled-components';
 
 export default function Login() {
+  useEffect(()=>{
+    document.querySelector(".titlePage").innerHTML = "Login"
+  },[])
+
   return (
       <WrapperSection>
         <Row xs={1} lg={2} className='h-100'>
