@@ -139,7 +139,9 @@ export default function PostManagementPage(){
                         </WrapperLastLine>
                     </BottomSide>
                 </Form>
-                <Situation style={{color:'green'}}>{confirmation.data}</Situation>
+                {confirmation && <Situation style={{color:'green'}}>
+                    Atualização Realizada com sucesso!
+                </Situation>}
                 {status.type === "error" && (<Situation style={{ color: "red" }}>{status.message}</Situation>)}
                 <WrapperLoading>
                     {confirmation && <ReactLoading type="spin" color="#D71709" height="50px" width="50px"/>}
