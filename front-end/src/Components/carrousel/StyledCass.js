@@ -13,7 +13,6 @@ export const CarrouselWrapper = styled.div`
   height:100%;
   width:85%;
   border-radius: 15px;
-  background-color: var(--dark-color_800);
   color:white;
   display:flex;
   align-items:center;
