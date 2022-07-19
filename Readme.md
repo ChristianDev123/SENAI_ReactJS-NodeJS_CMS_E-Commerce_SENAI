@@ -2,6 +2,8 @@
 
 Link deploy App: <https://cms-e-commerce-senai.vercel.app/>
 
+Este projeto foi desenvolvido durante as aulas de web front-end e web back-end do curso técnico de Desenvolvimento de Sistemas, Senai Suiço-Brasileiro, Trata-se de um simples sistema de gerenciador de conteúdo e de uma API hospedada em nuvem.
+
 ## Imagens Aplicação:
 
 ![Login Page](https://github.com/ChristianDev123/SENAI_ReactJS-NodeJS_CMS_E-Commerce_SENAI/blob/main/CMS%20Image/loginpage.png)
